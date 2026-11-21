@@ -192,13 +192,15 @@ em { color: #2d506c; font-style: normal; }
   overflow: hidden;
   background: linear-gradient(105deg, #f3f7fb, #eaf2fa 75%);
 }
-.hero-picture { position: absolute; inset: 0; z-index: -2; }
+.hero-picture { position: absolute; inset: 0 0 0 auto; width: min(100%, 1680px); z-index: -2; }
 .hero-picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 4%;
-  mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
+  object-position: center 22%;
+  mask-image: linear-gradient(to right, transparent, #000 9%),
+    linear-gradient(to bottom, #000 87%, transparent 100%);
+  mask-composite: intersect;
 }
 .hero::after {
   content: "";
@@ -716,7 +718,7 @@ em { color: #2d506c; font-style: normal; }
   }
   .enhanced .nav-links.open a:hover, .enhanced .nav-links.open a[aria-current] { background: #edf5fa; }
   .nav-links a { font-size: .91rem; }
-  .hero-picture img { object-position: 55% 4%; }
+  .hero-picture img { object-position: 55% 22%; }
   .hero::after { background: linear-gradient(90deg, #f4f8fdfa, #f3f7fce3 23%, #f3f7fc5c 56%, transparent 77%); }
   .hero h1 { font-size: clamp(3.9rem, 8.45vw, 6rem); }
   .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
@@ -778,8 +780,8 @@ em { color: #2d506c; font-style: normal; }
   .mobile-actions a:focus-visible { outline-offset: -3px; }
   .hero { display: grid; padding-bottom: 23px; background: #edf4fa; }
   .hero-inner { grid-row: 1; min-height: 0; padding: 32px 0 0; }
-  .hero-picture { position: relative; inset: auto; z-index: 0; grid-row: 2; height: clamp(235px, 69vw, 385px); }
-  .hero-picture img { object-position: center 6%; mask-image: linear-gradient(to bottom, transparent, #000 11%, #000 82%, transparent); }
+  .hero-picture { position: relative; inset: auto; width: 100%; z-index: 0; grid-row: 2; aspect-ratio: 3 / 2; }
+  .hero-picture img { object-fit: contain; object-position: center; mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 88%, transparent); }
   .hero::after { display: none; }
   .hero-copy { position: relative; z-index: 1; }
   .hero .eyebrow { max-width: 350px; margin-bottom: 14px; font-size: .72rem; }
