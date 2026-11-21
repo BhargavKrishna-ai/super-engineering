@@ -1,0 +1,245 @@
+{
+  "how-we-teach": {
+    "eyebrow": "How we teach",
+    "title": "The system behind the promise.",
+    "lead": "Build a working project every semester. Use your own kit, prove your skills individually and spend your final semester doing real engineering work.",
+    "image": "lab.webp",
+    "sections": [
+      {
+        "title": "Eight semesters. Eight builds.",
+        "intro": "The project gives each subject a purpose. You learn the mathematics, circuits and computing you need to make a real system work.",
+        "items": [
+          {"title": "Year 1 · Build it", "text": "Start making things in the first semester. Work with circuits, code and sensors from your own kit."},
+          {"title": "Year 2 · Engineer it", "text": "Make processors, software and control systems do what you intend. Test them when things go wrong."},
+          {"title": "Year 3 · Productise it", "text": "Make a prototype reliable, secure and ready to manufacture. Put a pilot build in users’ hands where the project allows."},
+          {"title": "Year 4 · Ship it", "text": "Develop a capstone project and put your skills to work with a company or in the Product Studio."}
+        ],
+        "links": [{"href": "courses", "label": "Explore the courses"}]
+      },
+      {
+        "title": "A workshop for building products",
+        "body": [
+          "The Factory brings electronics benches, test equipment, circuit-board assembly, 3D printers, laser cutters, AI computers and test stations into one workshop. A project can move from an idea to a tested prototype in the same place.",
+          "The programme is designed around a personal kit of boards, sensors, motors and tools that grows with each semester. Evening Factory access is part of the planned lab model. Ask admissions about arrangements at your campus."
+        ]
+      },
+      {
+        "title": "Every student proves their own skills",
+        "intro": "Teams build together. Students demonstrate key skills one at a time, and each pass goes into a skills record called the Engineering Passport.",
+        "items": [
+          {"title": "Find the fault", "text": "In the debugging exam, you have 45 minutes to find, explain and fix a fault hidden in a working system."},
+          {"title": "Use AI and check its work", "text": "Use AI in semester projects, test what it produces and explain how it works. In supervised skill tests and core exams, you work independently without AI."},
+          {"title": "Start from the basics", "text": "A beginners’ bootcamp introduces the tools. Each project has a core level and two extensions. If you fail a skill test, a short recovery course prepares you to try again."},
+          {"title": "Spend a semester doing the work", "text": "The final semester is designed for 16–20 weeks of full-time work. A company internship and the on-campus Product Studio carry the same academic credit in the programme model."}
+        ]
+      },
+      {
+        "title": "For those who want the detail",
+        "items": [
+          {"title": "Curriculum and credits", "text": "The B.Tech design uses the 160-credit structure and course categories used by AICTE, including mandatory courses. The university determines the final curriculum and awards the degree."},
+          {"title": "Foundations and tools", "text": "Mathematics, circuits, computing and engineering reasoning stay central. Boards, software frameworks and AI tools are reviewed each year."},
+          {"title": "Common teaching materials", "text": "Standard kits, reference builds, weekly teaching guides and marking rubrics help campuses deliver the same programme."},
+          {"title": "Assessment you can audit", "text": "The assessment design assigns 60% of the project grade to individual work. Skill tests use standard test stations and a shared question bank."}
+        ],
+        "links": [{"href": "admissions#contact", "label": "Request the full programme document"}]
+      }
+    ],
+    "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
+  },
+  "outcomes": {
+    "eyebrow": "Outcomes",
+    "title": "Proof of what you can build.",
+    "lead": "The programme is designed to give each graduate a portfolio of eight working projects, a record of skills demonstrated individually and 16–20 weeks of engineering work. Super Engineering is a new programme, so graduate and placement data will follow as cohorts complete it.",
+    "image": "lab.webp",
+    "sections": [
+      {
+        "title": "What graduates can show",
+        "items": [
+          {"title": "Eight working projects", "text": "A portfolio with designs, code and videos lets an employer review the work before an interview."},
+          {"title": "An Engineering Passport", "text": "A record of the practical tests you passed shows exactly which skills you demonstrated on your own."},
+          {"title": "A semester of engineering work", "text": "Work full time for 16–20 weeks in a company or in the Product Studio, contributing to a team on practical problems."},
+          {"title": "A four-year B.Tech pathway", "text": "Ask admissions for the awarding university, approved degree title and campus details for the course you are considering."}
+        ]
+      },
+      {
+        "title": "Where each course can lead",
+        "items": [
+          {"title": "Electronics and Computer Engineering", "text": "Embedded systems, firmware, edge AI, connected products and EV electronics."},
+          {"title": "VLSI Design and Technology", "text": "Chip design, verification and physical design."},
+          {"title": "Robotics and Artificial Intelligence", "text": "Robotics, industrial automation, perception and applied AI."},
+          {"title": "CSE (AI and Machine Learning)", "text": "AI and machine learning engineering, data science and applied AI."},
+          {"title": "BBA and MBA", "text": "Business analysis, supply chain, operations, marketing, sales and entrepreneurship."}
+        ],
+        "links": [{"href": "courses", "label": "Compare programmes"}]
+      },
+      {
+        "title": "Our reporting pledge",
+        "intro": "The proposed annual reporting pledge is subject to agreement with programme leadership and the universities. The plan is to publish each measure separately.",
+        "items": [
+          {"title": "Skills and projects", "text": "Show pass rates for each practical test, second attempts, and how many projects worked as specified."},
+          {"title": "Final-semester work", "text": "Show how many students worked with a company and how many worked in the Product Studio."},
+          {"title": "What graduates go on to do", "text": "Report job offers by role, higher studies and student-founded companies as distinct outcomes."},
+          {"title": "Employer feedback", "text": "Collect feedback about graduates after 3, 6 and 12 months."}
+        ]
+      },
+      {
+        "title": "For those who want the detail",
+        "body": [
+          "Until the first cohort has work to show, the programme uses faculty and engineering reference builds to demonstrate the kinds of work students take on. Ask which reference projects you can see during your visit.",
+          "Individual skill tests, standard test stations and common marking rubrics help make each result traceable to the work a student actually did."
+        ],
+        "links": [{"href": "how-we-teach", "label": "Read how we assess work"}]
+      }
+    ],
+    "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
+  },
+  "founders": {
+    "eyebrow": "Founders",
+    "title": "India needs people who start companies.",
+    "lead": "Start by building something real. The founder path takes you from finding a problem to testing a pilot with customers, with engineering and management students working side by side.",
+    "image": "management.webp",
+    "sections": [
+      {
+        "title": "From a real problem to a first customer",
+        "items": [
+          {"title": "Year 1 · Find a problem", "text": "Look for problems worth solving in factories, farms, hospitals and small businesses."},
+          {"title": "Year 2 · Build for one user", "text": "Pick a named user, build for them and speak with people who might buy the product."},
+          {"title": "Year 3 · Run a pilot", "text": "Build a small batch, put it in users’ hands and see what they use and what they would pay for."},
+          {"title": "Year 4 · Develop a venture", "text": "The proposed final-semester founder route focuses on a working product, a customer or pilot, and a plan to make and deliver it."}
+        ]
+      },
+      {
+        "title": "Build with people who have different skills",
+        "body": [
+          "The programme brings together students from four engineering courses and from the BBA and MBA. The founder path is designed around access to Factory tools, guidance from engineers and entrepreneurs, and help navigating government startup schemes.",
+          "The same projects and practical skills also prepare students who choose to join an established company."
+        ],
+        "links": [{"href": "courses/management", "label": "Explore the management courses"}]
+      },
+      {
+        "title": "For those who want the detail",
+        "body": [
+          "A founder team must demonstrate a working product, a real customer or pilot, and a credible plan to produce and deliver it. Final-semester credit for startup work depends on the university’s academic regulations.",
+          "An on-campus incubator, small prototype grants and internships offered by graduate-founded companies are planned initiatives. Their availability depends on programme decisions."
+        ]
+      }
+    ],
+    "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
+  },
+  "parents": {
+    "eyebrow": "For parents",
+    "title": "Your questions, answered honestly.",
+    "lead": "See what your child will build, how we assess their work and what to ask about the degree before you decide.",
+    "image": "hero.webp",
+    "sections": [
+      {
+        "title": "What your child will take into a changing workplace",
+        "body": [
+          "AI is changing every job. Students learn to build the chips, devices, machines and software AI depends on, and to check the work they do with AI tools.",
+          "The programme is designed around eight working projects, an individual skills record and 16–20 weeks of final-semester engineering work. Ask to see the workshop and sample builds during a campus visit."
+        ],
+        "links": [
+          {"href": "outcomes", "label": "See what graduates can show"},
+          {"href": "admissions#visit", "label": "Book a campus visit"}
+        ]
+      },
+      {
+        "title": "For those who want the detail",
+        "body": [
+          "For each campus, ask for the awarding university, the exact degree title, the relevant approvals and written details on fees, eligibility, scholarships and facilities. The admissions team can confirm the details for the course you are considering.",
+          "Students can track their progress through each practical test they pass. The Engineering Passport records those skills individually."
+        ],
+        "links": [{"href": "how-we-teach", "label": "See how students learn"}]
+      }
+    ],
+    "faq": [
+      {"question": "Will AI take my child’s job?", "answer": "AI is changing what people do at work. The programme teaches students to build the chips, devices, machines and software AI depends on, and to use AI tools while checking their results."},
+      {"question": "Is computer science the right choice?", "answer": "It depends on what your child wants to build. The CSE pathway focuses on AI software. The other engineering pathways apply computing to chips, electronics and machines."},
+      {"question": "What degree will my child receive?", "answer": "The engineering programmes are designed as four-year B.Tech degrees. Ask admissions to confirm the awarding university, exact degree title and approvals for your chosen course and campus."},
+      {"question": "Can my child study further?", "answer": "B.Tech graduates may apply to M.Tech, MS or MBA programmes, depending on the eligibility and admission requirements of the institution they apply to."},
+      {"question": "My child has never built anything. Can they manage?", "answer": "The programme starts with the basics. A beginners’ bootcamp, personal kit, core project level and re-tests help students with different levels of experience make progress."},
+      {"question": "What if my child does not get an internship?", "answer": "The Product Studio is the planned on-campus route for final-semester engineering work. It is designed around company problems and the same academic credit as the internship route."},
+      {"question": "What if my child wants to start a business?", "answer": "The founder path helps students test ideas and build a pilot. Whether startup work can count towards final-semester credit depends on the university’s academic regulations."},
+      {"question": "Do you guarantee placement?", "answer": "No. Employers make their own hiring decisions. The programme gives students practical experience and evidence of their skills to show employers. Super Engineering has yet to report graduate placement results."},
+      {"question": "What does it cost? Is there a hostel?", "answer": "Ask admissions for confirmed fees, scholarship information and the hostel, transport and campus safety arrangements for the location you are considering."}
+    ],
+    "cta": {"label": "Talk to an adviser", "href": "admissions#contact"}
+  },
+  "partners": {
+    "eyebrow": "Partners",
+    "title": "Help us build the engineers India needs.",
+    "lead": "Universities can adopt a project-led programme, companies can bring practical engineering problems, and working engineers can help students learn to build and test their ideas.",
+    "image": "management.webp",
+    "sections": [
+      {
+        "title": "A complete programme, delivered with universities",
+        "items": [
+          {"title": "What Super Engineering brings", "text": "Curriculum for Board of Studies review, lab design and setup, student kits, reference designs, teaching guides, faculty training, studio engineers and links to industry."},
+          {"title": "What the university keeps", "text": "Admissions, student records, fee collection, exams, results, faculty appointments and the award of the degree stay with the university."}
+        ]
+      },
+      {
+        "title": "Ways for companies to work with students",
+        "items": [
+          {"title": "Bring an engineering problem", "text": "Give students a clear problem and a few review hours. Teams build a prototype you can evaluate."},
+          {"title": "Review and mentor", "text": "Share an engineer’s time at design reviews. See how students use feedback and make technical choices."},
+          {"title": "Host final-semester interns", "text": "Offer 16–20 weeks of supervised engineering work and see what students can contribute to a real team."},
+          {"title": "Hire with evidence", "text": "Review candidates’ project portfolios and individual skills records alongside your usual interviews."},
+          {"title": "Support a lab or kit", "text": "Supply equipment, tools or sponsorship so students can learn with your technology."}
+        ]
+      },
+      {
+        "title": "Mentor a student team",
+        "body": [
+          "Practising engineers and founders can review designs, judge project days or help a student team test a startup idea. The mentor network is designed to match you with projects in your field, with an expected commitment of about two hours a month."
+        ]
+      },
+      {
+        "title": "For those who want the detail",
+        "body": [
+          "The design uses AICTE’s 160-credit structure, includes mandatory courses and is designed around outcome-based assessment and NEP 2020 multiple entry and exit. Academic adoption, approvals and delivery arrangements rest with the university.",
+          "Private and deemed universities and autonomous colleges can explore adopting the full programme. Affiliated colleges can discuss delivering the build-based model within their university’s syllabus.",
+          "Reference designs, weekly guides, standard kits and individual test stations give partners a common way to assess what students can do. A partnership should produce work that can be shown, such as a prototype, a mentored team or a completed internship."
+        ],
+        "links": [{"href": "how-we-teach", "label": "See the teaching and assessment model"}]
+      }
+    ],
+    "cta": {"label": "Talk to our partnerships team", "href": "admissions#contact"}
+  },
+  "about": {
+    "eyebrow": "About Super Engineering",
+    "title": "We are building the engineers of the next industrial revolution.",
+    "lead": "Chips, devices, machines and factories increasingly sense, decide and act. This is Physical AI. We want more people in India to know how to build it.",
+    "image": "hero.webp",
+    "sections": [
+      {
+        "title": "Make in India starts with people who can make",
+        "body": [
+          "India needs engineers who can design, build and manufacture, and managers who can take those products to market. Super Engineering brings the two together through work on practical problems.",
+          "We started with a simple idea. Give students time and tools to build every semester, and they can leave with a body of work that shows what they know."
+        ]
+      },
+      {
+        "title": "What we believe",
+        "items": [
+          {"title": "Learn engineering by building", "text": "Theory matters when you have a circuit, device or model to make work. Practical projects give students a reason to go deeper."},
+          {"title": "Give each student the chance to prove it", "text": "Students build in teams and demonstrate key skills individually. Every pass becomes part of their Engineering Passport."},
+          {"title": "Teach students to work with AI", "text": "Use AI to help build and test projects. Check the results and be able to explain how they work."},
+          {"title": "Make the work visible", "text": "Students can show their designs, code and build videos. Partners can review the curriculum and the standards students are expected to meet."}
+        ]
+      },
+      {
+        "title": "For those who want the detail",
+        "body": [
+          "Our long-term ambition is to educate 100,000 engineers who can build. The same projects, kits, reference designs and assessment standards are designed to work across participating campuses.",
+          "Super Engineering is designed to act as an academic delivery partner. Ask admissions to confirm the awarding university, approved degree names and campus information for your programme."
+        ],
+        "links": [
+          {"href": "partners", "label": "Explore partnership opportunities"},
+          {"href": "how-we-teach", "label": "See the teaching model"}
+        ]
+      }
+    ],
+    "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
+  }
+}
