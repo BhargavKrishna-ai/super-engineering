@@ -107,8 +107,10 @@
   "founders": {
     "eyebrow": "Founders",
     "title": "Take a prototype to its first customer.",
-    "lead": "Identify a problem, build for one user and test a pilot with customers. The founder path brings engineering and management students together to do that work.",
-    "image": "founders-detail.webp",
+    "lead": "Talk to one person about a problem they actually have. Build a version they can try, then test a pilot with customers. Engineering and management students work together along the way.",
+    "image": "founders-steve-jobs.webp",
+    "people_led": true,
+    "image_caption": "Steve Jobs · Editorial illustration",
     "sections": [
       {
         "title": "The founder path by year",
@@ -188,7 +190,8 @@
     "eyebrow": "Partners",
     "title": "Build with universities and industry.",
     "lead": "Universities can deliver a project-led programme. Companies can offer briefs and internships, and practising engineers can review student designs.",
-    "image": "partners-detail.webp",
+    "image": "partners-workshop.webp",
+    "people_led": true,
     "sections": [
       {
         "title": "A complete programme, delivered with universities",

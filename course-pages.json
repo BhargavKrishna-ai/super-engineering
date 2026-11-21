@@ -261,8 +261,10 @@
   "courses/management": {
     "eyebrow": "Management · BBA and MBA",
     "title": "Take a product from lab to market.",
-    "lead": "Work with engineers to find customers, set prices and plan how to source, make and sell a product. Use data and AI to guide those decisions.",
-    "image": "management-detail.webp",
+    "lead": "Work with engineers to find customers, set a price and decide how to source, make and sell a product. Use data and AI to test those decisions against evidence.",
+    "image": "management-indra-nooyi.webp",
+    "people_led": true,
+    "image_caption": "Indra Nooyi · Editorial illustration",
     "summary": [
       {"label": "Degrees", "value": "BBA and MBA"},
       {"label": "Specialisations", "value": "Four proposed options"},

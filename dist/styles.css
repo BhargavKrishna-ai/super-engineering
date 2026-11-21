@@ -327,6 +327,45 @@ em { color: #2d506c; font-style: normal; }
   text-align: right;
 }
 
+.people-led :is(.detail-image, .founder-layout figure) {
+  --register-size: clamp(9px, 1.25vw, 18px);
+  --register-ink: #426e943d;
+  position: relative;
+}
+.people-led :is(.detail-image, .founder-layout figure)::before,
+.people-led :is(.detail-image, .founder-layout figure)::after {
+  content: "";
+  position: absolute;
+  inset: clamp(10px, 1.25vw, 20px) 4% auto;
+  aspect-ratio: 3 / 2;
+  pointer-events: none;
+}
+.people-led :is(.detail-image, .founder-layout figure)::before {
+  background: radial-gradient(circle at center, #426e942b .55px, transparent .9px) 0 0 / 7px 7px;
+  mask-image: radial-gradient(ellipse at center, transparent 41%, #000 61%, transparent 94%);
+}
+.people-led :is(.detail-image, .founder-layout figure)::after {
+  background:
+    linear-gradient(var(--register-ink), var(--register-ink)) top left / var(--register-size) 1px,
+    linear-gradient(var(--register-ink), var(--register-ink)) top left / 1px var(--register-size),
+    linear-gradient(var(--register-ink), var(--register-ink)) top right / var(--register-size) 1px,
+    linear-gradient(var(--register-ink), var(--register-ink)) top right / 1px var(--register-size),
+    linear-gradient(var(--register-ink), var(--register-ink)) bottom left / var(--register-size) 1px,
+    linear-gradient(var(--register-ink), var(--register-ink)) bottom left / 1px var(--register-size),
+    linear-gradient(var(--register-ink), var(--register-ink)) bottom right / var(--register-size) 1px,
+    linear-gradient(var(--register-ink), var(--register-ink)) bottom right / 1px var(--register-size);
+  background-repeat: no-repeat;
+}
+.people-led :is(.detail-image, .founder-layout figure) img {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: normal;
+  mask-image:
+    linear-gradient(to right, transparent, #000 17%, #000 83%, transparent),
+    linear-gradient(to bottom, transparent, #000 8%, #000 83%, transparent);
+}
+.people-led :is(.detail-image, .founder-layout figure) figcaption { padding-inline-end: 4%; }
+
 .proof-layout {
   grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
   align-items: center;
@@ -456,6 +495,7 @@ em { color: #2d506c; font-style: normal; }
   background: linear-gradient(108deg, #f8fbfd 16%, #edf5fa);
   border-bottom: 1px solid #dbe7ef;
 }
+.detail-banner.people-led { background: linear-gradient(108deg, #f9fcfe 16%, #f0f6fb); }
 .detail-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: center; }
 .detail-banner h1 {
   max-width: 15ch;

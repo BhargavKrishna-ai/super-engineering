@@ -35,12 +35,12 @@ IMAGE_DESCRIPTIONS = {
     "aiml-detail.webp": "Model training and validation curves above a field of data points",
     "courses-overview.webp": "An engineering workbench with a gantry, a sensor enclosure and silicon samples",
     "ece-detail.webp": "An open measuring instrument with a circuit board being calibrated",
-    "founders-detail.webp": "Three iterations of an air-quality monitor prototype",
+    "founders-steve-jobs.webp": "Portrait of Steve Jobs studying a product sketch and paper mock-up",
     "how-teach.webp": "A mounted circuit board and tools on an electronics test bench",
-    "management-detail.webp": "A product mock-up presented with packaging and material samples",
+    "management-indra-nooyi.webp": "Portrait of Indra Nooyi reviewing notes at a desk",
     "outcomes-detail.webp": "A finished spectrometer and its test samples in a presentation case",
     "parents.webp": "A display robot in a light-filled engineering demonstration lab",
-    "partners-detail.webp": "A pilot manufacturing cell with a conveyor and an inspection station",
+    "partners-workshop.webp": "Three people meet around a table to discuss a project brief",
     "robotics-detail.webp": "A Cartesian gantry robot positioning its tool head over a target",
     "vlsi-detail.webp": "A patterned lithography reticle held above a semiconductor die layout",
 }
@@ -160,8 +160,10 @@ def breadcrumb(root, route):
 def banner(root, route, data):
     cta = data.get("cta") or {"href": "admissions#visit", "label": "Book a campus visit"}
     artwork = data["image"]
+    style = "detail-banner people-led" if data.get("people_led") else "detail-banner"
+    caption = data.get("image_caption", "Concept illustration")
     return f'''
-<section class="detail-banner" aria-labelledby="page-title">
+<section class="{style}" aria-labelledby="page-title">
   <div class="wrap">
     {breadcrumb(root, route)}
     <div class="split detail-grid">
@@ -169,7 +171,7 @@ def banner(root, route, data):
       <h1 id="page-title">{ESC(data["title"])}</h1>
       <p class="section-lead">{ESC(data["lead"])}</p>
       {link(root, cta["href"], cta["label"], "button primary")}</div>
-      <figure class="detail-image"><img src="{root}assets/{ESC(artwork)}" width="1536" height="1024" alt="{ESC(IMAGE_DESCRIPTIONS[artwork])}" fetchpriority="high"><figcaption>Concept illustration</figcaption></figure>
+      <figure class="detail-image"><img src="{root}assets/{ESC(artwork)}" width="1536" height="1024" alt="{ESC(IMAGE_DESCRIPTIONS[artwork])}" fetchpriority="high"><figcaption>{ESC(caption)}</figcaption></figure>
     </div>
   </div>
 </section>'''
