@@ -2,16 +2,18 @@
   "courses": {
     "eyebrow": "The programmes",
     "title": "Choose what you will build.",
-    "lead": "Every AI system stands on four layers. Choose the chips it runs on, the devices it lives in, the machines it moves or the intelligence inside. Each four-year B.Tech follows the same approach: build a working project every semester.",
-    "image": "about.webp",
+    "lead": "Design a chip, build a smart device, program a robot or train an AI model. In every four-year B.Tech, you build a working project each semester.",
+    "image": "courses-overview.webp",
     "sections": [
       {
-        "title": "Compare the four B.Tech courses",
+        "title": "Four ways to build AI systems",
+        "id": "compare-the-four-b-tech-courses",
+        "layout": "gallery",
         "items": [
-          {"layer": "The chip", "image": "chip-thumb.webp", "title": "Electronics Engineering (VLSI Design and Technology)", "text": "Design the chips inside phones, cars and AI systems. A good fit if you enjoy logic, puzzles and precise work. Explore careers in chip design, verification and physical design."},
-          {"layer": "The device", "image": "device-thumb.webp", "title": "Electronics and Computer Engineering", "text": "Put circuits, software and AI together in smart devices such as EV chargers and medical monitors. A good fit if both electronics and computing interest you. Explore careers in embedded systems, firmware and product engineering."},
-          {"layer": "The machine", "image": "robotics-thumb.webp", "title": "Robotics and Artificial Intelligence", "text": "Build robots and drones that sense and move. A good fit if you want your code to move things in the real world. Explore careers in robotics, automation and machine perception."},
-          {"layer": "The intelligence", "image": "intelligence-thumb.webp", "title": "CSE (Artificial Intelligence and Machine Learning)", "text": "Build systems that learn from data, make decisions and generate content. A good fit if you enjoy mathematics, data and software. Explore careers in applied AI, machine learning and data science."}
+          {"layer": "The chip", "image": "compare-vlsi-thumb.webp", "title": "Electronics Engineering (VLSI Design and Technology)", "text": "Design the chips inside phones, cars and AI systems. A good fit if you enjoy logic, puzzles and precise work. Explore careers in chip design, verification and physical design."},
+          {"layer": "The device", "image": "compare-device-thumb.webp", "title": "Electronics and Computer Engineering", "text": "Put circuits, software and AI together in smart devices such as EV chargers and medical monitors. A good fit if both electronics and computing interest you. Explore careers in embedded systems, firmware and product engineering."},
+          {"layer": "The machine", "image": "compare-robotics-thumb.webp", "title": "Robotics and Artificial Intelligence", "text": "Build robots and drones that sense and move. A good fit if you want your code to move things in the real world. Explore careers in robotics, automation and machine perception."},
+          {"layer": "The intelligence", "image": "compare-ai-thumb.webp", "title": "CSE (Artificial Intelligence and Machine Learning)", "text": "Train models on data, test their predictions and put them to work in software. A good fit if you enjoy mathematics, programming and analysing data."}
         ],
         "links": [
           {"href": "courses/vlsi", "label": "Explore VLSI Design and Technology"},
@@ -21,7 +23,8 @@
         ]
       },
       {
-        "title": "The company · BBA and MBA",
+        "title": "Bring a product to market",
+        "id": "the-company-bba-and-mba",
         "intro": "Learn how to finance a product, source its parts, reach customers and grow a business. Work alongside future engineers and use AI as a business tool.",
         "links": [{"href": "courses/management", "label": "Explore management courses"}]
       },
@@ -36,28 +39,32 @@
   "courses/electronics-computer-engineering": {
     "eyebrow": "B.Tech · Electronics and Computer Engineering",
     "title": "Build the whole smart device.",
-    "lead": "Design the circuit, write the software and run AI on the device itself. Electronics and Computer Engineering brings those three skills together in one degree.",
-    "image": "device.webp",
+    "lead": "Design a circuit board, write its firmware and run AI on the device. Take a working prototype through a pilot batch and a field trial.",
+    "image": "ece-detail.webp",
     "sections": [
       {
-        "title": "Why this course exists",
+        "title": "How a smart device works",
+        "id": "why-this-course-exists",
         "body": ["A smartwatch, an EV charger and a heart monitor each depend on circuits and software working together. This course follows the work across that boundary, from a sensor reading to a device someone can use."]
       },
       {
-        "title": "What you will build",
+        "title": "From calibrated instrument to field trial",
+        "id": "what-you-will-build",
+        "layout": "projects",
         "items": [
           {"title": "Semester 1 · A smart measuring instrument", "text": "Design and calibrate your own instrument."},
-          {"title": "Semester 2 · A connected device", "text": "Build a working device on a circuit board you designed."},
+          {"title": "Semester 2 · A connected device with a custom circuit board", "text": "Build a working device on a circuit board you designed."},
           {"title": "Semester 3 · An embedded board", "text": "Make your own board process a real-world signal."},
-          {"title": "Semester 4 · A real-time control system", "text": "Build a controller that balances, steers or drives a motor."},
-          {"title": "Semester 5 · An AI device", "text": "Build a Linux-based product that runs a model on the device itself."},
-          {"title": "Semester 6 · A pilot batch", "text": "Build a secure product and make a pilot batch of 10 units."},
-          {"title": "Semester 7 · A product in the field", "text": "Take a complete smart device from a user's problem to a field trial."},
+          {"title": "Semester 4 · Real-time motor control", "text": "Build a controller that balances, steers or drives a motor."},
+          {"title": "Semester 5 · On-device AI on Linux", "text": "Build a Linux-based product that runs a model on the device itself."},
+          {"title": "Semester 6 · A 10-unit pilot batch", "text": "Build a secure product and make a pilot batch of 10 units."},
+          {"title": "Semester 7 · A smart device in field trials", "text": "Take a complete smart device from a user's problem to a field trial."},
           {"title": "Semester 8 · 16–20 weeks of engineering work", "text": "Put your skills to work in a company or the Product Studio."}
         ]
       },
       {
-        "title": "What you will master",
+        "title": "Circuits, firmware and edge AI",
+        "id": "what-you-will-master",
         "items": [
           {"title": "Hardware", "text": "Circuit and PCB design, ARM and RISC-V microcontrollers, FPGA, and design for manufacturing."},
           {"title": "Software", "text": "C, C++ and Python, real-time operating systems, embedded Linux, device drivers and device security."},
@@ -82,16 +89,19 @@
   },
   "courses/vlsi": {
     "eyebrow": "B.Tech · Electronics Engineering (VLSI Design and Technology)",
-    "title": "Design the chips India has decided to make.",
-    "lead": "Phones, cars, satellites and AI systems all run on chips. Learn to design, verify and test the circuits at their core.",
-    "image": "chip.webp",
+    "title": "Design a chip from logic to layout.",
+    "lead": "Test digital circuits on programmable hardware, design a processor core and take a chip from specification to physical layout.",
+    "image": "vlsi-detail.webp",
     "sections": [
       {
-        "title": "Why this course exists",
+        "title": "Inside a silicon chip",
+        "id": "why-this-course-exists",
         "body": ["A single chip can contain billions of switches on a piece of silicon smaller than a fingernail. As India invests in semiconductor manufacturing, engineers are needed to turn specifications into circuits and show that those circuits work."]
       },
       {
-        "title": "What you will build",
+        "title": "From FPGA circuits to a chip layout",
+        "id": "what-you-will-build",
+        "layout": "projects",
         "intro": "These projects illustrate the proposed year-by-year progression. Ask admissions for the latest curriculum.",
         "items": [
           {"title": "Year 1 · Digital circuits", "text": "Build and test circuits on programmable hardware called FPGA boards."},
@@ -101,7 +111,8 @@
         ]
       },
       {
-        "title": "What you will master",
+        "title": "Circuit design, verification and layout",
+        "id": "what-you-will-master",
         "body": ["The proposed curriculum covers semiconductor devices, digital and analog circuit design, Verilog and SystemVerilog, computer architecture, design verification, physical design and industry design tools."]
       },
       {
@@ -122,16 +133,19 @@
   },
   "courses/robotics-ai": {
     "eyebrow": "B.Tech · Robotics and Artificial Intelligence",
-    "title": "Give your code eyes, motors and hands.",
-    "lead": "Study computer science alongside mechanics, control and AI. Bring them together in robots and drones that can sense, move and work.",
-    "image": "robotics.webp",
+    "title": "Turn sensor data into controlled motion.",
+    "lead": "Program a mobile robot to sense and steer, control a robotic arm and use computer vision in moving machines.",
+    "image": "robotics-detail.webp",
     "sections": [
       {
-        "title": "Why this course exists",
+        "title": "How a robot acts on what it sees",
+        "id": "why-this-course-exists",
         "body": ["Robots in warehouses, farms, hospitals and factories have to make decisions in a physical world. A camera gives a machine a view of its surroundings. Software interprets what it sees. Mechanics and control turn that decision into movement."]
       },
       {
-        "title": "What you will build",
+        "title": "Mobile robots, arms and vision systems",
+        "id": "what-you-will-build",
+        "layout": "projects",
         "intro": "These projects illustrate the proposed year-by-year progression. Ask admissions for the latest curriculum.",
         "items": [
           {"title": "Year 1 · Mobile robots", "text": "Build robots that detect their surroundings and steer."},
@@ -141,7 +155,8 @@
         ]
       },
       {
-        "title": "What you will master",
+        "title": "Motion control, perception and simulation",
+        "id": "what-you-will-master",
         "body": ["The proposed curriculum covers programming and algorithms, mechanics and mechatronics, motors and control, embedded systems, kinematics and motion planning, computer vision, machine learning, ROS 2 and simulation."]
       },
       {
@@ -162,26 +177,30 @@
   },
   "courses/cse-ai-ml": {
     "eyebrow": "B.Tech · CSE (Artificial Intelligence and Machine Learning)",
-    "title": "Build the intelligence itself.",
-    "lead": "Learn to build, train and test machine learning models, then put them to work in software people can use.",
-    "image": "intelligence.webp",
+    "title": "Train, test and deploy AI models.",
+    "lead": "Work with data, train models and test their predictions. Turn those models into recommendation, vision and language applications.",
+    "image": "aiml-detail.webp",
     "sections": [
       {
-        "title": "Why this course exists",
-        "body": ["AI systems depend on people who understand the mathematics, the data and the software behind them. You learn the computer science needed to find out where a model works, where it fails and how to improve it."]
+        "title": "What makes a model reliable",
+        "id": "why-this-course-exists",
+        "body": ["A model learns patterns from the data you give it. You need statistics, sound data and a way to test predictions on examples the model has never seen. That is how you find where a model works, where it fails and what to improve."]
       },
       {
-        "title": "What you will build",
+        "title": "From datasets to deployed software",
+        "id": "what-you-will-build",
+        "layout": "projects",
         "intro": "These projects illustrate the proposed year-by-year progression. Ask admissions for the latest curriculum.",
         "items": [
-          {"title": "Year 1 · Programs and data projects", "text": "Write software and analyse data to solve practical problems."},
-          {"title": "Year 2 · Machine learning models", "text": "Build a model such as a recommendation engine and test its results."},
+          {"title": "Year 1 · Programs and data analysis", "text": "Write software and analyse data to solve practical problems."},
+          {"title": "Year 2 · A recommendation model", "text": "Build a model such as a recommendation engine and test its results."},
           {"title": "Year 3 · Vision and language applications", "text": "Build applications using computer vision, language models and generative AI."},
-          {"title": "Year 4 · An AI product", "text": "Take a product to real users, then apply your skills in a supervised work semester."}
+          {"title": "Year 4 · An AI product for real users", "text": "Take a product to real users, then apply your skills in a supervised work semester."}
         ]
       },
       {
-        "title": "What you will master",
+        "title": "Machine learning, data engineering and deployment",
+        "id": "what-you-will-master",
         "body": ["The proposed curriculum covers Python, data structures, algorithms, mathematics for machine learning, deep learning, computer vision, language models, generative AI, data engineering, model deployment and monitoring, and responsible AI."]
       },
       {
@@ -202,12 +221,13 @@
   },
   "courses/management": {
     "eyebrow": "Management · BBA and MBA",
-    "title": "Managers build the companies.",
-    "lead": "Learn how to take a product from the lab to the market. Study finance, sourcing, operations, marketing and sales, with AI as a tool for each.",
-    "image": "management.webp",
+    "title": "Take a product from lab to market.",
+    "lead": "Work with engineers to find customers, set prices and plan how a product is sourced, made and sold. Use data and AI to inform those decisions.",
+    "image": "management-detail.webp",
     "sections": [
       {
-        "title": "Why this course exists",
+        "title": "What it takes to bring a product to market",
+        "id": "why-this-course-exists",
         "body": ["A prototype needs a supply chain, customers and a business behind it to reach the market. Engineers and managers work together to make those pieces fit. This programme teaches you to make business decisions with a practical understanding of the product."]
       },
       {
@@ -221,7 +241,8 @@
         ]
       },
       {
-        "title": "Work alongside engineers",
+        "title": "From first customer to factory order",
+        "id": "work-alongside-engineers",
         "body": ["Management students can join engineering teams and work on bringing a product to market, from identifying the first customer to preparing for a factory order. Company projects connect coursework to decisions and constraints that businesses face."]
       },
       {

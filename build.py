@@ -3,6 +3,7 @@ import html
 import json
 import re
 from pathlib import Path
+from textwrap import indent
 from urllib.parse import urlsplit
 
 PROJECT = Path(__file__).resolve().parent
@@ -30,14 +31,18 @@ PAGE_NAMES = {route: name for name, route in NAV + COURSES}
 PAGE_NAMES["admissions"] = "Admissions"
 IMAGE_DESCRIPTIONS = {
     "about.webp": "A cutaway architectural model of a robotics lab and project workshop",
-    "chip.webp": "Precision probes testing a silicon die on a wafer chuck",
-    "device.webp": "An exploded view of an embedded machine vision sensor",
-    "intelligence.webp": "A conceptual optical processor with light passing through layered glass",
-    "lab.webp": "A drivetrain prototype on an instrumented test bench",
-    "management.webp": "Several stages of a motor prototype laid out on a development bench",
-    "outcomes.webp": "A machined impeller mounted in a precision test fixture",
+    "admissions-detail.webp": "A bright corridor opening onto an engineering classroom",
+    "aiml-detail.webp": "Model training and validation curves above a field of data points",
+    "courses-overview.webp": "An engineering workbench with a gantry, a sensor enclosure and silicon samples",
+    "ece-detail.webp": "An open measuring instrument with a circuit board being calibrated",
+    "founders-detail.webp": "Three iterations of an air-quality monitor prototype",
+    "how-teach.webp": "A mounted circuit board and tools on an electronics test bench",
+    "management-detail.webp": "A product mock-up presented with packaging and material samples",
+    "outcomes-detail.webp": "A finished spectrometer and its test samples in a presentation case",
     "parents.webp": "A display robot in a light-filled engineering demonstration lab",
-    "robotics.webp": "An industrial robot arm placing a metal ring in a fixture",
+    "partners-detail.webp": "A pilot manufacturing cell with a conveyor and an inspection station",
+    "robotics-detail.webp": "A Cartesian gantry robot positioning its tool head over a target",
+    "vlsi-detail.webp": "A patterned lithography reticle held above a semiconductor die layout",
 }
 ESC = html.escape
 
@@ -172,34 +177,54 @@ def banner(root, route, data):
 
 def section(root, record):
     title = record["title"]
-    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
-    if title == "Our reporting pledge":
-        slug = "reporting-pledge"
+    slug = record.get("id") or re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    layout = record.get("layout")
+    css = "detail-section"
+    if layout == "gallery":
+        css += " detail-gallery-section"
+    elif layout == "projects":
+        css += " detail-projects"
     intro = f'<p class="section-lead">{ESC(record["intro"])}</p>' if record.get("intro") else ""
     body = "".join(f"<p>{ESC(paragraph)}</p>" for paragraph in record.get("body", []))
     items = record.get("items", [])
     links = record.get("links", [])
     cards = ""
-    if items and record.get("link_each_item"):
-        gallery = "".join(f'''
+    if layout == "gallery":
+        gallery = []
+        for item, entry in zip(items, links, strict=True):
+            thumb = root + "assets/" + item["image"]
+            full = thumb.removesuffix("-thumb.webp") + ".webp"
+            gallery.append(f'''
 <a class="course-card" href="{url(root, entry['href'])}">
-  <img src="{root}assets/{ESC(item['image'])}" srcset="{root}assets/{ESC(item['image'])} 768w, {root}assets/{ESC(item['image'].removesuffix('-thumb.webp'))}.webp 1536w" sizes="{COURSE_ART_SIZES}" width="768" height="512" alt="" loading="lazy">
+  <img src="{ESC(thumb)}" srcset="{ESC(thumb)} 768w, {ESC(full)} 1536w" sizes="{COURSE_ART_SIZES}"
+    width="768" height="512" alt="" loading="lazy">
   <div class="course-info"><p class="tag">{ESC(item['layer'])}</p><h3>{ESC(item['title'])}</h3>
   <p>{ESC(item['text'])}</p><span class="text-link">See the course</span></div>
-</a>''' for item, entry in zip(items, links, strict=True))
-        cards = f'<div class="course-grid detail-course-grid">{gallery}</div>'
+</a>''')
+        cards = f'<div class="course-grid detail-course-grid">{"".join(gallery)}</div>'
     elif items:
-        articles = "".join(f'<article class="detail-card"><h3>{ESC(item["title"])}</h3><p>{ESC(item["text"])}</p></article>' for item in items)
-        cards = f'<div class="detail-card-grid">{articles}</div>'
+        articles = []
+        for item in items:
+            heading = ESC(item["title"])
+            period, _, project = item["title"].partition(" · ")
+            if layout == "projects" and project and re.fullmatch(r"(?:Year|Semester) \d+", period):
+                heading = f'<span class="project-period">{ESC(period)}</span> {ESC(project)}'
+            articles.append(f'<article class="detail-card"><h3>{heading}</h3><p>{ESC(item["text"])}</p></article>')
+        cards = f'<div class="detail-card-grid">{"".join(articles)}</div>'
     links_html = ""
-    if links and not record.get("link_each_item"):
+    if links and layout != "gallery":
         links_html = '<div class="detail-links">' + "".join(link(root, x["href"], x["label"], "text-link") for x in links) + "</div>"
+    body_html = f'<div class="detail-body">{body}</div>' if body else ""
+    details = "\n".join(fragment for fragment in (body_html, cards, links_html) if fragment)
     return f'''
-<section class="detail-section" id="{slug}"><div class="wrap"><h2>{ESC(title)}</h2>{intro}
-  {f'<div class="detail-body">{body}</div>' if body else ""}
-  {cards}
-  {links_html}
-</div></section>'''
+<section class="{css}" id="{ESC(slug)}">
+  <div class="wrap detail-section-inner">
+    <div class="detail-section-intro"><h2>{ESC(title)}</h2>{intro}</div>
+    <div class="detail-section-content">
+{indent(details, '      ')}
+    </div>
+  </div>
+</section>'''
 
 
 def faq(records):
@@ -207,26 +232,32 @@ def faq(records):
         f'<details><summary>{ESC(item["question"])}</summary><p>{ESC(item["answer"])}</p></details>'
         for item in records
     )
-    return f'<section class="detail-section" id="questions"><div class="wrap"><h2>Common questions</h2><div class="faq-list">{entries}</div></div></section>'
+    return f'''<section class="detail-section" id="questions">
+  <div class="wrap detail-section-inner">
+    <div class="detail-section-intro"><h2>Common questions</h2></div>
+    <div class="detail-section-content faq-list">{entries}</div>
+  </div>
+</section>'''
 
 
 def detail_content(root, route, data):
     cta = data.get("cta") or {"href": "admissions#visit", "label": "Book a campus visit"}
     content = banner(root, route, data)
-    contents = data["sections"]
-    if route == "courses" and len(contents[0].get("links", [])) == len(contents[0].get("items", [])):
-        contents[0]["link_each_item"] = True
-    content += "".join(section(root, info) for info in contents)
+    content += "".join(section(root, info) for info in data["sections"])
     if data.get("faq"):
         content += faq(data["faq"])
-    return content + f'<section class="detail-end"><div class="wrap"><h2>Ready to take the next step?</h2>{link(root, cta["href"], cta["label"], "button primary")}</div></section>'
+    closing = {
+        "parents": "Ask about your child’s programme.",
+        "partners": "Discuss a university or industry partnership.",
+    }.get(route, "See the workshop in person.")
+    return content + f'<section class="detail-end"><div class="wrap"><h2>{ESC(closing)}</h2>{link(root, cta["href"], cta["label"], "button primary")}</div></section>'
 
 
 def admissions(root):
     return banner(root, "admissions", {
         "eyebrow": "Admissions", "title": "Join the founding batch.",
         "lead": "Explore the programmes, visit the campus and talk through eligibility and fees with an adviser before you apply.",
-        "image": "parents.webp", "cta": {"href": "#apply", "label": "Apply now"},
+        "image": "admissions-detail.webp", "cta": {"href": "#apply", "label": "Apply now"},
     }) + section(root, {
         "title": "How to apply",
         "items": [
@@ -236,10 +267,10 @@ def admissions(root):
             {"title": "Confirm your seat", "text": "Review the formal offer and fee schedule before accepting a seat."},
         ],
     }) + '''
-<section class="detail-section" id="programme-facts"><div class="wrap">
-  <h2>Programme facts</h2>
-  <p class="section-lead">Ask admissions for the duration and entry requirements for your intake, accepted exams, seats, fees and any scholarship or loan options.</p>
-  <div class="table-shell"><table class="comparison">
+<section class="detail-section" id="programme-facts"><div class="wrap detail-section-inner">
+  <div class="detail-section-intro"><h2>Programme facts</h2>
+  <p class="section-lead">Ask admissions about entry requirements, accepted exams, seats, fees and funding options.</p></div>
+  <div class="detail-section-content table-shell"><table class="comparison">
     <caption class="sr-only">Programme durations</caption>
     <thead><tr><th scope="col">Programme</th><th scope="col">Duration outlined in the programme plan</th></tr></thead>
     <tbody><tr><th scope="row">B.Tech</th><td>4 years</td></tr><tr><th scope="row">BBA</th><td>Confirm the degree structure with admissions</td></tr><tr><th scope="row">MBA</th><td>2 years</td></tr></tbody>
@@ -248,8 +279,9 @@ def admissions(root):
 <section class="detail-section" id="apply"><div class="wrap split contact-grid">
   <div><p class="eyebrow"><span></span> Application enquiries</p><h2>Apply for a programme.</h2><p class="section-lead">Tell the team what you’d like to study. You’ll send your enquiry in WhatsApp and can ask for the formal application link.</p>{contact_links(root)}</div>{form("apply")}
 </div></section>
-<section class="detail-section" id="contact"><div class="wrap"><h2>Talk to a person.</h2>
-  <p class="section-lead">Ask about admissions, campus visits, partnerships or careers. For partnerships and careers, mention what you’re interested in so the team can direct your enquiry.</p>{contact_links(root)}
+<section class="detail-section" id="contact"><div class="wrap detail-section-inner">
+  <div class="detail-section-intro"><h2>Talk to an adviser.</h2></div>
+  <div class="detail-section-content"><p class="section-lead">Ask about admissions, campus visits, partnerships or careers. For partnerships and careers, mention what you’re interested in so the team can direct your enquiry.</p>{contact_links(root)}</div>
 </div></section>''' + visit_section(root)
 
 

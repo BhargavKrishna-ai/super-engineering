@@ -1,12 +1,13 @@
 {
   "how-we-teach": {
     "eyebrow": "How we teach",
-    "title": "The system behind the promise.",
+    "title": "Build, test and prove it.",
     "lead": "Build a working project every semester. Use your own kit, prove your skills individually and spend your final semester doing real engineering work.",
-    "image": "lab.webp",
+    "image": "how-teach.webp",
     "sections": [
       {
         "title": "Eight semesters. Eight builds.",
+        "layout": "projects",
         "intro": "The project gives each subject a purpose. You learn the mathematics, circuits and computing you need to make a real system work.",
         "items": [
           {"title": "Year 1 · Build it", "text": "Start making things in the first semester. Work with circuits, code and sensors from your own kit."},
@@ -48,9 +49,9 @@
   },
   "outcomes": {
     "eyebrow": "Outcomes",
-    "title": "Proof of what you can build.",
+    "title": "Show exactly what you built.",
     "lead": "The programme is designed to give each graduate a portfolio of eight working projects, a record of skills demonstrated individually and 16–20 weeks of engineering work. Super Engineering is a new programme, so graduate and placement data will follow as cohorts complete it.",
-    "image": "outcomes.webp",
+    "image": "outcomes-detail.webp",
     "sections": [
       {
         "title": "What graduates can show",
@@ -74,6 +75,7 @@
       },
       {
         "title": "Our reporting pledge",
+        "id": "reporting-pledge",
         "intro": "The proposed annual reporting pledge is subject to agreement with programme leadership and the universities. The plan is to publish each measure separately.",
         "items": [
           {"title": "Skills and projects", "text": "Show pass rates for each practical test, second attempts, and how many projects worked as specified."},
@@ -95,12 +97,14 @@
   },
   "founders": {
     "eyebrow": "Founders",
-    "title": "India needs people who start companies.",
+    "title": "Take a prototype to its first customer.",
     "lead": "Start by building something real. The founder path takes you from finding a problem to testing a pilot with customers, with engineering and management students working side by side.",
-    "image": "management.webp",
+    "image": "founders-detail.webp",
     "sections": [
       {
-        "title": "From a real problem to a first customer",
+        "title": "The founder path by year",
+        "id": "from-a-real-problem-to-a-first-customer",
+        "layout": "projects",
         "items": [
           {"title": "Year 1 · Find a problem", "text": "Look for problems worth solving in factories, farms, hospitals and small businesses."},
           {"title": "Year 2 · Build for one user", "text": "Pick a named user, build for them and speak with people who might buy the product."},
@@ -128,7 +132,7 @@
   },
   "parents": {
     "eyebrow": "For parents",
-    "title": "Your questions, answered honestly.",
+    "title": "See how your child will learn.",
     "lead": "See what your child will build, how we assess their work and what to ask about the degree before you decide.",
     "image": "parents.webp",
     "sections": [
@@ -167,9 +171,9 @@
   },
   "partners": {
     "eyebrow": "Partners",
-    "title": "Help us build the engineers India needs.",
+    "title": "Build with universities and industry.",
     "lead": "Universities can adopt a project-led programme, companies can bring practical engineering problems, and working engineers can help students learn to build and test their ideas.",
-    "image": "management.webp",
+    "image": "partners-detail.webp",
     "sections": [
       {
         "title": "A complete programme, delivered with universities",
@@ -208,7 +212,7 @@
   },
   "about": {
     "eyebrow": "About Super Engineering",
-    "title": "We are building the engineers of the next industrial revolution.",
+    "title": "Engineering degrees built around making.",
     "lead": "Chips, devices, machines and factories increasingly sense, decide and act. This is Physical AI. We want more people in India to know how to build it.",
     "image": "about.webp",
     "sections": [
