@@ -7,6 +7,11 @@ from urllib.parse import urlsplit
 
 PROJECT = Path(__file__).resolve().parent
 DIST = PROJECT / "dist"
+COURSE_ART_SIZES = (
+    "(max-width: 355px) calc(100vw - 26px), "
+    "(max-width: 540px) calc(100vw - 36px), "
+    "(max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px"
+)
 PHONE = "tel:+914045307444"
 WHATSAPP = "https://wa.me/919000719444?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Super%20Engineering."
 NAV = [
@@ -23,6 +28,17 @@ COURSES = [
 ]
 PAGE_NAMES = {route: name for name, route in NAV + COURSES}
 PAGE_NAMES["admissions"] = "Admissions"
+IMAGE_DESCRIPTIONS = {
+    "about.webp": "A cutaway architectural model of a robotics lab and project workshop",
+    "chip.webp": "Precision probes testing a silicon die on a wafer chuck",
+    "device.webp": "An exploded view of an embedded machine vision sensor",
+    "intelligence.webp": "A conceptual optical processor with light passing through layered glass",
+    "lab.webp": "A drivetrain prototype on an instrumented test bench",
+    "management.webp": "Several stages of a motor prototype laid out on a development bench",
+    "outcomes.webp": "A machined impeller mounted in a precision test fixture",
+    "parents.webp": "A display robot in a light-filled engineering demonstration lab",
+    "robotics.webp": "An industrial robot arm placing a metal ring in a fixture",
+}
 ESC = html.escape
 
 
@@ -138,6 +154,7 @@ def breadcrumb(root, route):
 
 def banner(root, route, data):
     cta = data.get("cta") or {"href": "admissions#visit", "label": "Book a campus visit"}
+    artwork = data["image"]
     return f'''
 <section class="detail-banner" aria-labelledby="page-title">
   <div class="wrap">
@@ -147,7 +164,7 @@ def banner(root, route, data):
       <h1 id="page-title">{ESC(data["title"])}</h1>
       <p class="section-lead">{ESC(data["lead"])}</p>
       {link(root, cta["href"], cta["label"], "button primary")}</div>
-      <figure class="detail-image"><img src="{root}assets/{ESC(data["image"])}" width="1536" height="1024" alt="" fetchpriority="high"><figcaption>Concept illustration</figcaption></figure>
+      <figure class="detail-image"><img src="{root}assets/{ESC(artwork)}" width="1536" height="1024" alt="{ESC(IMAGE_DESCRIPTIONS[artwork])}" fetchpriority="high"><figcaption>Concept illustration</figcaption></figure>
     </div>
   </div>
 </section>'''
@@ -166,7 +183,7 @@ def section(root, record):
     if items and record.get("link_each_item"):
         gallery = "".join(f'''
 <a class="course-card" href="{url(root, entry['href'])}">
-  <img src="{root}assets/{ESC(item['image'])}" width="768" height="512" alt="" loading="lazy">
+  <img src="{root}assets/{ESC(item['image'])}" srcset="{root}assets/{ESC(item['image'])} 768w, {root}assets/{ESC(item['image'].removesuffix('-thumb.webp'))}.webp 1536w" sizes="{COURSE_ART_SIZES}" width="768" height="512" alt="" loading="lazy">
   <div class="course-info"><p class="tag">{ESC(item['layer'])}</p><h3>{ESC(item['title'])}</h3>
   <p>{ESC(item['text'])}</p><span class="text-link">See the course</span></div>
 </a>''' for item, entry in zip(items, links, strict=True))
@@ -209,7 +226,7 @@ def admissions(root):
     return banner(root, "admissions", {
         "eyebrow": "Admissions", "title": "Join the founding batch.",
         "lead": "Explore the programmes, visit the campus and talk through eligibility and fees with an adviser before you apply.",
-        "image": "lab.webp", "cta": {"href": "#apply", "label": "Apply now"},
+        "image": "parents.webp", "cta": {"href": "#apply", "label": "Apply now"},
     }) + section(root, {
         "title": "How to apply",
         "items": [
@@ -263,7 +280,8 @@ def page(route, title, description, content):
 
 def main():
     home = (PROJECT / "home.html").read_text(encoding="utf-8")
-    home = home.replace("{{assets}}", "./assets/").replace("{{root}}", "./").replace("{{visit}}", visit_section("./"))
+    home = home.replace("{{assets}}", "./assets/").replace("{{root}}", "./")
+    home = home.replace("{{courseSizes}}", COURSE_ART_SIZES).replace("{{visit}}", visit_section("./"))
     page("", "Super Engineering | Build what AI runs on", "Explore B.Tech and management programmes built around practical work, engineering projects and AI.", home)
     for filename in ("course-pages.json", "audience-pages.json"):
         data = json.loads((PROJECT / filename).read_text(encoding="utf-8"))
