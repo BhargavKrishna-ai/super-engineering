@@ -9,8 +9,10 @@ function setMenu(open) {
 
 if (menuButton && navLinks) {
   document.documentElement.classList.add('enhanced')
-  menuButton.addEventListener('click', () => {
-    setMenu(menuButton.getAttribute('aria-expanded') === 'false')
+  menuButton.addEventListener('click', (event) => {
+    const open = menuButton.getAttribute('aria-expanded') === 'false'
+    setMenu(open)
+    if (open && event.detail === 0) navLinks.querySelector('a')?.focus()
   })
   navLinks.addEventListener('click', (event) => {
     if (event.target.closest('a')) setMenu(false)
@@ -29,6 +31,18 @@ if (menuButton && navLinks) {
   window.matchMedia('(min-width: 961px)').addEventListener('change', () => setMenu(false))
 }
 
+const pageSections = document.querySelectorAll('.detail-subnav a[href^="#"]')
+if (pageSections.length) {
+  const markSection = () => {
+    for (const anchor of pageSections) {
+      if (anchor.hash === window.location.hash) anchor.setAttribute('aria-current', 'location')
+      else anchor.removeAttribute('aria-current')
+    }
+  }
+  markSection()
+  window.addEventListener('hashchange', markSection)
+}
+
 const date = document.querySelector('#visit-date')
 if (date) {
   const today = new Date()
@@ -38,9 +52,15 @@ if (date) {
   date.min = `${year}-${month}-${day}`
 }
 
+const requestedProgramme = new URLSearchParams(window.location.search).get('programme')
 for (const form of document.querySelectorAll('.visit-form')) {
   form.hidden = false
   const phone = form.elements.phone
+  const course = form.elements.course
+  if (requestedProgramme && !course.value) {
+    const match = Array.from(course.options).find((option) => option.dataset.programme === requestedProgramme)
+    if (match) course.value = match.value
+  }
   const notice = form.querySelector('.form-message')
   phone.addEventListener('input', () => phone.setCustomValidity(''))
   form.addEventListener('submit', (event) => {

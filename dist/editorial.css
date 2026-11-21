@@ -372,3 +372,135 @@
 @media (max-width: 355px) {
   .home-content .hero h1 { font-size: 2.96rem; }
 }
+
+.home-content .hero .button.primary {
+  color: #fff;
+  background: #153f82;
+  border-color: #153f82;
+  box-shadow: 0 5px 15px #173c7629;
+}
+
+.home-content .hero .button.primary:hover,
+.home-content .hero .button.primary:active {
+  background: #103367;
+  border-color: #103367;
+}
+
+.home-facts-grid a {
+  text-decoration: none;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+}
+
+.home-facts-grid a:hover,
+.home-facts-grid a:focus-visible {
+  color: var(--blue-dark);
+  text-decoration: underline;
+}
+
+.programme-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 22px;
+}
+
+.home-content .stack-section {
+  padding-block: clamp(46px, 6.6vw, 91px);
+}
+
+.home-content .founder-layout p:not(.eyebrow),
+.home-content .parents-layout .section-lead,
+.home-content .proof-copy .section-lead {
+  line-height: 1.7;
+}
+
+.home-content .proof-grid > article,
+.home-content .teaching-points > div {
+  min-width: 0;
+}
+
+.home-content .management-strip:hover {
+  background: #e6eff9;
+}
+
+.management-overview {
+  color: var(--ink);
+  background: linear-gradient(124deg, #f8fbfe 0%, #edf4fb 70%, #f6f9fc);
+  border-block: 1px solid #d8e5f0;
+  scroll-margin-top: 65px;
+}
+
+.management-feature {
+  grid-template-columns: minmax(0, .77fr) minmax(0, 1.23fr);
+  align-items: center;
+  gap: clamp(25px, 6vw, 82px);
+}
+
+.management-feature .section-lead {
+  max-width: 39ch;
+  margin-bottom: 0;
+  font-size: clamp(1.03rem, 1.4vw, 1.23rem);
+}
+
+.management-portrait { min-width: 0; }
+
+.management-portrait img {
+  width: 100%;
+  height: auto;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 88%, transparent);
+  mask-composite: intersect;
+}
+
+.management-portrait figcaption { margin-top: 4px; text-align: right; }
+
+.management-degrees {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: clamp(30px, 5vw, 62px) 0;
+  border-block: 1px solid var(--line-strong);
+}
+
+.management-degrees article {
+  min-width: 0;
+  padding: clamp(18px, 3.1vw, 37px) clamp(14px, 3.4vw, 45px);
+}
+
+.management-degrees article + article { border-left: 1px solid var(--line); }
+.management-degrees h3 { font-size: clamp(1.8rem, 4.2vw, 3.55rem); letter-spacing: -.04em; }
+.management-degrees .degree-duration { margin-top: 7px; color: var(--blue-dark); font-weight: 750; }
+.management-degrees article p:last-child { max-width: 42ch; margin-top: 10px; }
+
+.management-specialisations {
+  display: grid;
+  grid-template-columns: minmax(0, .69fr) minmax(0, 1.31fr);
+  gap: clamp(22px, 6vw, 74px);
+}
+
+.management-specialisations h3 { font-size: clamp(1.75rem, 3.2vw, 2.6rem); letter-spacing: -.04em; }
+.management-specialisations h3 + p { max-width: 34ch; margin-top: 12px; }
+.management-specialisations ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 30px; padding: 0; list-style: none; }
+.management-specialisations li { padding-top: 14px; border-top: 1px solid var(--line-strong); }
+.management-specialisations h4 { font-size: clamp(1.1rem, 1.8vw, 1.42rem); line-height: 1.22; text-wrap: initial; }
+.management-specialisations h4 + p { margin-top: 8px; font-size: .95rem; }
+.management-action { margin-top: clamp(24px, 4.3vw, 49px); }
+
+@media (min-width: 691px) and (max-height: 880px) {
+  .home-content .hero-inner { min-height: clamp(485px, 44vw, 635px); padding-block: 42px 52px; }
+  .home-facts-grid > div { min-height: 93px; }
+}
+
+@media (max-width: 810px) {
+  .management-overview { scroll-margin-top: 12px; }
+  .management-feature { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .management-specialisations { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .management-feature,
+  .management-degrees,
+  .management-specialisations ul { grid-template-columns: minmax(0, 1fr); }
+  .management-degrees article + article { border-top: 1px solid var(--line); border-left: 0; }
+  .management-degrees article { padding-inline: 0; }
+  .management-portrait figcaption { margin-top: 0; }
+}

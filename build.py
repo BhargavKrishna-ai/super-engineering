@@ -2,6 +2,7 @@
 import html
 import json
 import re
+from hashlib import sha256
 from pathlib import Path
 from textwrap import indent
 from urllib.parse import urlsplit
@@ -48,11 +49,24 @@ ESC = html.escape
 
 
 def url(root, value):
-    if urlsplit(value).scheme or value.startswith("#"):
+    parsed = urlsplit(value)
+    if parsed.scheme or value.startswith("#"):
         return ESC(value)
-    path, separator, anchor = value.partition("#")
-    target = root + path.strip("/") + "/" if path.strip("/") else root
-    return ESC(target + separator + anchor)
+    path = parsed.path.strip("/")
+    target = root + path + "/" if path else root
+    if parsed.query:
+        target += "?" + parsed.query
+    if parsed.fragment:
+        target += "#" + parsed.fragment
+    return ESC(target)
+
+
+def admissions_link(route, section):
+    if not route and section == "visit":
+        return "#visit"
+    programme = route.removeprefix("courses/") if route.startswith("courses/") else ""
+    query = f"?programme={programme}" if programme else ""
+    return f"admissions{query}#{section}"
 
 
 def link(root, href, label, css=""):
@@ -83,17 +97,17 @@ def header(root, route):
   <nav class="wrap nav" aria-label="Main navigation">
     {brand(root)}
     <ul class="nav-links" id="primary-links">{"".join(links)}</ul>
-    <div class="nav-action"><span class="nav-apply">{link(root, "admissions#apply", "Apply now", "button primary")}</span><button type="button" class="menu-toggle" aria-controls="primary-links" aria-expanded="false">Menu</button></div>
+    <div class="nav-action"><span class="nav-apply">{link(root, admissions_link(route, "apply"), "Enquire", "button secondary")}</span><button type="button" class="menu-toggle" aria-controls="primary-links" aria-expanded="false">Menu</button></div>
   </nav>
 </header>'''
 
 
-def footer(root):
+def footer(root, route):
     groups = [
         ("Courses", COURSES),
         ("Learn more", NAV[1:5]),
         ("Work with us", NAV[5:] + [("Careers enquiries", "admissions#contact")]),
-        ("Contact", [("040 45307444", PHONE), ("WhatsApp 9000719444", WHATSAPP), ("Admissions", "admissions"), ("Book a campus visit", "admissions#visit")]),
+        ("Contact", [("040 45307444", PHONE), ("WhatsApp 9000719444", WHATSAPP), ("Admissions", "admissions"), ("Book a campus visit", admissions_link(route, "visit"))]),
     ]
     columns = "".join(
         f'<div><h2>{ESC(title)}</h2>{"".join(link(root, path, name) for name, path in entries)}</div>'
@@ -107,7 +121,7 @@ def footer(root):
   </div>
 </footer>
 <nav class="mobile-actions" aria-label="Contact admissions">
-  {link(root, PHONE, "Call")}{link(root, WHATSAPP, "WhatsApp")}{link(root, "admissions#visit", "Book a visit")}
+  {link(root, PHONE, "Call")}{link(root, WHATSAPP, "WhatsApp")}{link(root, admissions_link(route, "visit"), "Book a visit")}
 </nav>'''
 
 
@@ -115,8 +129,10 @@ def form(kind):
     visit = kind == "visit"
     title = "Request a visit on WhatsApp" if visit else "Start on WhatsApp"
     message = "Hello, I would like to request a Super Engineering campus visit." if visit else "Hello, I would like to apply to Super Engineering. Could you share the next steps?"
-    date = '<label class="field">Preferred date<input id="visit-date" type="date" name="date" required></label>' if visit else ""
-    options = "".join(f'<option value="{ESC(name)}">{ESC(name)}</option>' for name, _ in COURSES)
+    date = '<label class="field"><span>Preferred date <span class="field-optional">(optional)</span></span><input id="visit-date" type="date" name="date"></label>' if visit else ""
+    choices = [(name, path.removeprefix("courses/")) for name, path in COURSES if path != "courses/management"]
+    choices.extend([("BBA", "bba"), ("MBA", "mba"), ("BBA or MBA (still deciding)", "management")])
+    options = "".join(f'<option data-programme="{ESC(slug)}">{ESC(name)}</option>' for name, slug in choices)
     explanation = "Send your preferred date to admissions in WhatsApp. An adviser will confirm availability."
     if not visit:
         explanation = "Send an enquiry in WhatsApp. An adviser can confirm eligibility and share application instructions."
@@ -157,8 +173,15 @@ def breadcrumb(root, route):
     return '<nav class="breadcrumb" aria-label="Breadcrumb">' + '<span aria-hidden="true">/</span>'.join(parts) + '</nav>'
 
 
-def banner(root, route, data):
+def page_action(route, data):
     cta = data.get("cta") or {"href": "admissions#visit", "label": "Book a campus visit"}
+    if cta["href"] == "admissions#visit":
+        return {**cta, "href": admissions_link(route, "visit")}
+    return cta
+
+
+def banner(root, route, data):
+    cta = page_action(route, data)
     artwork = data["image"]
     style = "detail-banner people-led" if data.get("people_led") else "detail-banner"
     caption = data.get("image_caption", "Concept illustration")
@@ -170,7 +193,7 @@ def banner(root, route, data):
       <div><p class="eyebrow"><span></span> {ESC(data["eyebrow"])}</p>
       <h1 id="page-title">{ESC(data["title"])}</h1>
       <p class="section-lead">{ESC(data["lead"])}</p>
-      {link(root, cta["href"], cta["label"], "button primary")}</div>
+      <div class="actions">{link(root, cta["href"], cta["label"], "button primary")}{link(root, "#the-company-bba-and-mba", "Explore BBA and MBA", "text-link") if route == "courses" else ""}</div></div>
       <figure class="detail-image"><img src="{root}assets/{ESC(artwork)}" width="1536" height="1024" alt="{ESC(IMAGE_DESCRIPTIONS[artwork])}" fetchpriority="high"><figcaption>{ESC(caption)}</figcaption></figure>
     </div>
   </div>
@@ -197,10 +220,36 @@ def detail_navigation(anchors):
 </nav>'''
 
 
+def management_overview(root, record):
+    degrees = "".join(f'''
+<article><h3>{ESC(degree["title"])}</h3><p class="degree-duration">{ESC(degree["duration"])}</p>
+<p>{ESC(degree["text"])}</p></article>''' for degree in record["degrees"])
+    specialisations = "".join(f'<li><h4>{ESC(item["title"])}</h4><p>{ESC(item["text"])}</p></li>' for item in record["items"])
+    notes = "".join(f"<p>{ESC(paragraph)}</p>" for paragraph in record.get("body", []))
+    cta, = record["links"]
+    return f'''
+<section class="section management-overview" id="{ESC(section_id(record))}">
+  <div class="wrap">
+    <div class="split management-feature">
+      <div><p class="eyebrow"><span></span> Management</p><h2>{ESC(record["title"])}</h2><p class="section-lead">{ESC(record["intro"])}</p></div>
+      <figure class="management-portrait"><img src="{root}assets/management-overview.webp" width="1536" height="1024" loading="lazy" alt="Editorial portrait of Ratan Tata reviewing a business plan"><figcaption>Ratan Tata · Editorial illustration</figcaption></figure>
+    </div>
+    <div class="management-degrees">{degrees}</div>
+    <div class="management-specialisations">
+      <div><h3>Four specialisations</h3>{notes}</div>
+      <ul>{specialisations}</ul>
+    </div>
+    <div class="management-action">{link(root, cta["href"], cta["label"], "button primary")}</div>
+  </div>
+</section>'''
+
+
 def section(root, record):
     title = record["title"]
     slug = section_id(record)
     layout = record.get("layout")
+    if layout == "management-overview":
+        return management_overview(root, record)
     css = "detail-section"
     if layout == "gallery":
         css += " detail-gallery-section"
@@ -267,7 +316,7 @@ def faq(records):
 
 
 def detail_content(root, route, data):
-    cta = data.get("cta") or {"href": "admissions#visit", "label": "Book a campus visit"}
+    cta = page_action(route, data)
     content = banner(root, route, data)
     sections = data["sections"]
     questions = data.get("faq")
@@ -295,7 +344,7 @@ def admissions(root):
     return banner(root, "admissions", {
         "eyebrow": "Admissions", "title": "Plan your application.",
         "lead": "Choose a programme, check which requirements apply to you and speak to an adviser about fees or a campus visit.",
-        "image": "admissions-detail.webp", "cta": {"href": "#apply", "label": "Apply now"},
+        "image": "admissions-detail.webp", "cta": {"href": "#apply", "label": "Start an enquiry"},
     }) + detail_navigation([
         ("How to apply", "how-to-apply"), ("Programme facts", "programme-facts"),
         ("Application enquiry", "apply"), ("Campus visit", "visit"),
@@ -315,7 +364,7 @@ def admissions(root):
   <div class="detail-section-content table-shell"><table class="comparison">
     <caption class="sr-only">Programme durations</caption>
     <thead><tr><th scope="col">Programme</th><th scope="col">Duration outlined in the programme plan</th></tr></thead>
-    <tbody><tr><th scope="row">B.Tech</th><td>4 years</td></tr><tr><th scope="row">BBA</th><td>Confirm the degree structure with admissions</td></tr><tr><th scope="row">MBA</th><td>2 years</td></tr></tbody>
+    <tbody><tr><th scope="row">B.Tech</th><td>4 years</td></tr><tr><th scope="row">BBA</th><td>3 or 4 years (proposed). Confirm with admissions.</td></tr><tr><th scope="row">MBA</th><td>2 years</td></tr></tbody>
   </table></div>
 </div></section>''' + f'''
 <section class="detail-section" id="apply"><div class="wrap split contact-grid">
@@ -327,9 +376,14 @@ def admissions(root):
 </div></section>''' + visit_section(root)
 
 
+def asset_revision(root, filename):
+    revision = sha256((DIST / filename).read_bytes()).hexdigest()[:10]
+    return f"{root}{filename}?v={revision}"
+
+
 def page(route, title, description, content):
     root = "../" * len(route.split("/")) if route else "./"
-    editorial = f'\n  <link rel="stylesheet" href="{root}editorial.css">' if route in {"", "courses"} else ""
+    editorial = f'\n  <link rel="stylesheet" href="{asset_revision(root, "editorial.css")}">' if route in {"", "courses"} else ""
     main_class = ' class="home-content"' if not route else ""
     output = DIST / route / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -343,13 +397,13 @@ def page(route, title, description, content):
   <meta name="description" content="{ESC(description)}">
   <link rel="icon" href="{root}assets/favicon.png" type="image/png">
   <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="{root}styles.css">{editorial}
-  <script defer src="{root}site.js"></script>
+  <link rel="stylesheet" href="{asset_revision(root, "styles.css")}">{editorial}
+  <script defer src="{asset_revision(root, "site.js")}"></script>
 </head>
 <body>
   {header(root, route)}
   <main id="main"{main_class}>{content}</main>
-  {footer(root)}
+  {footer(root, route)}
 </body>
 </html>
 ''', encoding="utf-8")

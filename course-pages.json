@@ -2,12 +2,12 @@
   "courses": {
     "eyebrow": "The programmes",
     "title": "Choose what you will build.",
-    "lead": "Design a chip, build a smart device, program a robot or train an AI model. Each four-year B.Tech is built around one working project per semester.",
+    "lead": "Engineer the chips, devices, robots and software behind AI. Or learn to take a product to market through BBA or MBA.",
     "image": "courses-overview.webp",
     "sections": [
       {
         "title": "Four ways to build AI systems",
-        "nav": "Compare courses",
+        "nav": "B.Tech pathways",
         "id": "compare-the-four-b-tech-courses",
         "layout": "gallery",
         "items": [
@@ -24,10 +24,23 @@
         ]
       },
       {
-        "title": "Bring a product to market",
+        "title": "BBA and MBA",
+        "nav": "BBA & MBA",
         "id": "the-company-bba-and-mba",
-        "intro": "In BBA or MBA, work alongside engineers to finance a product, source its parts and reach customers. Use data and AI to guide business decisions.",
-        "links": [{"href": "courses/management", "label": "Explore management courses"}]
+        "layout": "management-overview",
+        "intro": "Work alongside engineers to bring a product to market. Learn how to finance it, source its parts and reach customers, using data and AI to guide decisions.",
+        "body": ["The four proposed specialisations apply to both degrees. Ask admissions which options are available at your preferred campus."],
+        "degrees": [
+          {"title": "BBA", "duration": "3 or 4 years (proposed)", "text": "The Bachelor of Business Administration is an undergraduate route into business and management."},
+          {"title": "MBA", "duration": "2 years", "text": "The Master of Business Administration is a postgraduate route into business and management."}
+        ],
+        "items": [
+          {"title": "AI for Business", "text": "Analyse business data and use AI to automate routine work and compare options."},
+          {"title": "Supply Chain and Operations Management", "text": "Plan how to source parts, manufacture products and deliver them to customers."},
+          {"title": "AI for Marketing and Sales", "text": "Use AI to identify customers, develop a brand and make sales decisions."},
+          {"title": "Entrepreneurship and New Ventures", "text": "Find customers, set a price and assess funding and growth options for a venture."}
+        ],
+        "links": [{"href": "courses/management", "label": "See BBA and MBA programme details"}]
       },
       {
         "title": "For those who want the detail",
@@ -93,7 +106,7 @@
     ],
     "faq": [
       {"question": "What does Electronics and Computer Engineering cover?", "answer": "You design the hardware, write the software that runs on it and learn to test them together."},
-      {"question": "Can I take a software job?", "answer": "Yes. The curriculum includes programming, data structures, operating systems and software engineering."}
+      {"question": "Does the degree prepare me for software roles?", "answer": "The curriculum includes programming, data structures, operating systems and software engineering. These are foundations for software roles."}
     ],
     "closing": {"title": "See how a smart device comes together.", "text": "Ask how the projects are assessed, from calibrating your first instrument to testing a device in the field."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
@@ -280,7 +293,7 @@
       {
         "title": "Two degrees, four specialisations",
         "nav": "Specialisations",
-        "intro": "The proposed durations are three or four years for BBA and two years for MBA. Ask admissions which options your campus will offer.",
+        "intro": "The BBA is proposed as a three- or four-year degree. The MBA is designed as a two-year degree. Confirm duration and specialisations for your preferred campus with admissions.",
         "items": [
           {"title": "AI for Business", "text": "Analyse business data, automate routine work and use the findings to make decisions."},
           {"title": "Supply Chain and Operations Management", "text": "Plan how to source, make and move products in India and internationally."},
