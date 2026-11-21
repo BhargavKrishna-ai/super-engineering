@@ -2,6 +2,7 @@
 import html
 import json
 import re
+from hashlib import sha256
 from pathlib import Path
 from textwrap import indent
 from urllib.parse import urlsplit
@@ -160,8 +161,12 @@ def breadcrumb(root, route):
 def banner(root, route, data):
     cta = data.get("cta") or {"href": "admissions#visit", "label": "Book a campus visit"}
     artwork = data["image"]
-    style = "detail-banner people-led" if data.get("people_led") else "detail-banner"
+    people_led = data.get("people_led")
+    style = "detail-banner people-led" if people_led else "detail-banner"
     caption = data.get("image_caption", "Concept illustration")
+    illustration = f'<img src="{root}assets/{ESC(artwork)}" width="1536" height="1024" alt="{ESC(IMAGE_DESCRIPTIONS[artwork])}" fetchpriority="high">'
+    if people_led:
+        illustration = f'<div class="drafting-plate">{illustration}</div>'
     return f'''
 <section class="{style}" aria-labelledby="page-title">
   <div class="wrap">
@@ -171,7 +176,7 @@ def banner(root, route, data):
       <h1 id="page-title">{ESC(data["title"])}</h1>
       <p class="section-lead">{ESC(data["lead"])}</p>
       {link(root, cta["href"], cta["label"], "button primary")}</div>
-      <figure class="detail-image"><img src="{root}assets/{ESC(artwork)}" width="1536" height="1024" alt="{ESC(IMAGE_DESCRIPTIONS[artwork])}" fetchpriority="high"><figcaption>{ESC(caption)}</figcaption></figure>
+      <figure class="detail-image">{illustration}<figcaption>{ESC(caption)}</figcaption></figure>
     </div>
   </div>
 </section>'''
@@ -327,9 +332,16 @@ def admissions(root):
 </div></section>''' + visit_section(root)
 
 
+def stylesheet_link(root, filename):
+    revision = sha256((DIST / filename).read_bytes()).hexdigest()[:10]
+    return f'<link rel="stylesheet" href="{root}{filename}?v={revision}">'
+
+
 def page(route, title, description, content):
     root = "../" * len(route.split("/")) if route else "./"
-    editorial = f'\n  <link rel="stylesheet" href="{root}editorial.css">' if route in {"", "courses"} else ""
+    stylesheets = stylesheet_link(root, "styles.css")
+    if route in {"", "courses"}:
+        stylesheets += "\n  " + stylesheet_link(root, "editorial.css")
     main_class = ' class="home-content"' if not route else ""
     output = DIST / route / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -343,7 +355,7 @@ def page(route, title, description, content):
   <meta name="description" content="{ESC(description)}">
   <link rel="icon" href="{root}assets/favicon.png" type="image/png">
   <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="{root}styles.css">{editorial}
+  {stylesheets}
   <script defer src="{root}site.js"></script>
 </head>
 <body>

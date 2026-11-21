@@ -202,7 +202,45 @@ em { color: #2d506c; font-style: normal; }
   background: linear-gradient(90deg, #f4f8fdf2 0%, #f3f7fce3 23%, #f3f7fc84 40%, transparent 60%);
   pointer-events: none;
 }
+.hero-drafting, .drafting-plate {
+  --draft-grid:
+    linear-gradient(90deg, #527b9d4d 1px, transparent 1px),
+    linear-gradient(#527b9d4d 1px, transparent 1px),
+    linear-gradient(90deg, #7295b238 1px, transparent 1px),
+    linear-gradient(#7295b238 1px, transparent 1px);
+  --draft-grid-size: 72px 72px, 72px 72px, 18px 18px, 18px 18px;
+  --draft-dots: radial-gradient(circle, #416d927a 0 1.15px, transparent 1.48px);
+}
+.hero-drafting {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-drafting::before, .hero-drafting::after {
+  content: "";
+  position: absolute;
+}
+.hero-drafting::before {
+  inset: 0 auto 0 0;
+  width: min(52%, 700px);
+  background-image:
+    radial-gradient(circle at 0 88%, transparent 0 67px, #6689a966 68px 69px, transparent 70px 115px, #6689a95e 116px 117px, transparent 118px),
+    var(--draft-grid);
+  background-size: auto, var(--draft-grid-size);
+  mask-image: radial-gradient(ellipse 98% 85% at 2% 68%, #000 25%, #000b 55%, transparent 92%);
+}
+.hero-drafting::after {
+  bottom: 18px;
+  left: clamp(15px, 4.8vw, 72px);
+  width: clamp(125px, 20vw, 292px);
+  height: 75px;
+  background: var(--draft-dots) 0 0 / 6px 6px;
+  mask-image: linear-gradient(24deg, #000 12%, #000c 41%, transparent 74%);
+}
 .hero-inner {
+  position: relative;
+  z-index: 1;
   min-height: clamp(560px, 48vw, 705px);
   display: flex;
   align-items: center;
@@ -327,44 +365,44 @@ em { color: #2d506c; font-style: normal; }
   text-align: right;
 }
 
-.people-led :is(.detail-image, .founder-layout figure) {
-  --register-size: clamp(9px, 1.25vw, 18px);
-  --register-ink: #426e943d;
+.drafting-plate {
   position: relative;
+  isolation: isolate;
+  padding: clamp(9px, 1.35vw, 20px);
+  border: 1px solid #abc1d3;
+  background-color: #f2f7fb;
+  background-image: var(--draft-grid);
+  background-size: var(--draft-grid-size);
 }
-.people-led :is(.detail-image, .founder-layout figure)::before,
-.people-led :is(.detail-image, .founder-layout figure)::after {
+.drafting-plate::before, .drafting-plate::after {
+  --register-ink: #6488a9;
   content: "";
   position: absolute;
-  inset: clamp(10px, 1.25vw, 20px) 4% auto;
-  aspect-ratio: 3 / 2;
-  pointer-events: none;
-}
-.people-led :is(.detail-image, .founder-layout figure)::before {
-  background: radial-gradient(circle at center, #426e942b .55px, transparent .9px) 0 0 / 7px 7px;
-  mask-image: radial-gradient(ellipse at center, transparent 41%, #000 61%, transparent 94%);
-}
-.people-led :is(.detail-image, .founder-layout figure)::after {
-  background:
-    linear-gradient(var(--register-ink), var(--register-ink)) top left / var(--register-size) 1px,
-    linear-gradient(var(--register-ink), var(--register-ink)) top left / 1px var(--register-size),
-    linear-gradient(var(--register-ink), var(--register-ink)) top right / var(--register-size) 1px,
-    linear-gradient(var(--register-ink), var(--register-ink)) top right / 1px var(--register-size),
-    linear-gradient(var(--register-ink), var(--register-ink)) bottom left / var(--register-size) 1px,
-    linear-gradient(var(--register-ink), var(--register-ink)) bottom left / 1px var(--register-size),
-    linear-gradient(var(--register-ink), var(--register-ink)) bottom right / var(--register-size) 1px,
-    linear-gradient(var(--register-ink), var(--register-ink)) bottom right / 1px var(--register-size);
-  background-repeat: no-repeat;
-}
-.people-led :is(.detail-image, .founder-layout figure) img {
-  position: relative;
   z-index: 1;
+  width: min(40%, 174px);
+  height: clamp(46px, 8.5vw, 104px);
+  pointer-events: none;
+  background:
+    linear-gradient(var(--register-ink), var(--register-ink)) 8px 8px / 23px 1.5px no-repeat,
+    linear-gradient(var(--register-ink), var(--register-ink)) 8px 8px / 1.5px 23px no-repeat,
+    var(--draft-dots) 2px 2px / 6px 6px;
+  mask-image: linear-gradient(132deg, #000 18%, #000e 31%, transparent 69%);
+}
+.drafting-plate::before {
+  top: 0;
+  left: 0;
+}
+.drafting-plate::after {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+.drafting-plate img {
   mix-blend-mode: normal;
   mask-image:
-    linear-gradient(to right, transparent, #000 17%, #000 83%, transparent),
-    linear-gradient(to bottom, transparent, #000 8%, #000 83%, transparent);
+    linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 88%, transparent);
 }
-.people-led :is(.detail-image, .founder-layout figure) figcaption { padding-inline-end: 4%; }
 
 .proof-layout {
   grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
@@ -753,6 +791,9 @@ em { color: #2d506c; font-style: normal; }
   .hero-inner { grid-row: 1; min-height: 0; padding: 32px 0 0; }
   .hero-picture { position: relative; inset: auto; z-index: 0; grid-row: 2; height: clamp(235px, 69vw, 385px); }
   .hero-picture img { object-position: center 6%; mask-image: linear-gradient(to bottom, transparent, #000 11%, #000 82%, transparent); }
+  .hero-drafting { inset: auto 0 27px; height: clamp(235px, 69vw, 385px); }
+  .hero-drafting::before { width: 43%; mask-image: linear-gradient(53deg, #000 19%, #000a 47%, transparent 84%); }
+  .hero-drafting::after { left: 15px; bottom: 5px; width: 114px; height: 57px; }
   .hero::after { display: none; }
   .hero-copy { position: relative; z-index: 1; }
   .hero .eyebrow { max-width: 350px; margin-bottom: 14px; font-size: .72rem; }
