@@ -147,7 +147,7 @@ def banner(root, route, data):
       <h1 id="page-title">{ESC(data["title"])}</h1>
       <p class="section-lead">{ESC(data["lead"])}</p>
       {link(root, cta["href"], cta["label"], "button primary")}</div>
-      <figure class="detail-image"><img src="{root}assets/{ESC(data["image"])}" alt="" fetchpriority="high"><figcaption>Concept illustration</figcaption></figure>
+      <figure class="detail-image"><img src="{root}assets/{ESC(data["image"])}" width="1536" height="1024" alt="" fetchpriority="high"><figcaption>Concept illustration</figcaption></figure>
     </div>
   </div>
 </section>'''
@@ -162,20 +162,25 @@ def section(root, record):
     body = "".join(f"<p>{ESC(paragraph)}</p>" for paragraph in record.get("body", []))
     items = record.get("items", [])
     links = record.get("links", [])
-    items_html = []
-    for index, item in enumerate(items):
-        action = ""
-        if record.get("link_each_item"):
-            entry = links[index]
-            action = f'<div class="detail-links">{link(root, entry["href"], entry["label"], "text-link")}</div>'
-        items_html.append(f'<article class="detail-card"><h3>{ESC(item["title"])}</h3><p>{ESC(item["text"])}</p>{action}</article>')
+    cards = ""
+    if items and record.get("link_each_item"):
+        gallery = "".join(f'''
+<a class="course-card" href="{url(root, entry['href'])}">
+  <img src="{root}assets/{ESC(item['image'])}" width="768" height="512" alt="" loading="lazy">
+  <div class="course-info"><p class="tag">{ESC(item['layer'])}</p><h3>{ESC(item['title'])}</h3>
+  <p>{ESC(item['text'])}</p><span class="text-link">See the course</span></div>
+</a>''' for item, entry in zip(items, links, strict=True))
+        cards = f'<div class="course-grid detail-course-grid">{gallery}</div>'
+    elif items:
+        articles = "".join(f'<article class="detail-card"><h3>{ESC(item["title"])}</h3><p>{ESC(item["text"])}</p></article>' for item in items)
+        cards = f'<div class="detail-card-grid">{articles}</div>'
     links_html = ""
     if links and not record.get("link_each_item"):
         links_html = '<div class="detail-links">' + "".join(link(root, x["href"], x["label"], "text-link") for x in links) + "</div>"
     return f'''
 <section class="detail-section" id="{slug}"><div class="wrap"><h2>{ESC(title)}</h2>{intro}
   {f'<div class="detail-body">{body}</div>' if body else ""}
-  {f'<div class="detail-card-grid">{"".join(items_html)}</div>' if items_html else ""}
+  {cards}
   {links_html}
 </div></section>'''
 

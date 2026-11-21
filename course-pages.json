@@ -8,10 +8,10 @@
       {
         "title": "Compare the four B.Tech courses",
         "items": [
-          {"title": "The chip · Electronics Engineering (VLSI Design and Technology)", "text": "Design the chips inside phones, cars and AI systems. A good fit if you enjoy logic, puzzles and precise work. Explore careers in chip design, verification and physical design."},
-          {"title": "The device · Electronics and Computer Engineering", "text": "Put circuits, software and AI together in smart devices such as EV chargers and medical monitors. A good fit if both electronics and computing interest you. Explore careers in embedded systems, firmware and product engineering."},
-          {"title": "The machine · Robotics and Artificial Intelligence", "text": "Build robots and drones that sense and move. A good fit if you want your code to move things in the real world. Explore careers in robotics, automation and machine perception."},
-          {"title": "The intelligence · CSE (Artificial Intelligence and Machine Learning)", "text": "Build systems that learn from data, make decisions and generate content. A good fit if you enjoy mathematics, data and software. Explore careers in applied AI, machine learning and data science."}
+          {"layer": "The chip", "image": "chip-thumb.webp", "title": "Electronics Engineering (VLSI Design and Technology)", "text": "Design the chips inside phones, cars and AI systems. A good fit if you enjoy logic, puzzles and precise work. Explore careers in chip design, verification and physical design."},
+          {"layer": "The device", "image": "device-thumb.webp", "title": "Electronics and Computer Engineering", "text": "Put circuits, software and AI together in smart devices such as EV chargers and medical monitors. A good fit if both electronics and computing interest you. Explore careers in embedded systems, firmware and product engineering."},
+          {"layer": "The machine", "image": "robotics-thumb.webp", "title": "Robotics and Artificial Intelligence", "text": "Build robots and drones that sense and move. A good fit if you want your code to move things in the real world. Explore careers in robotics, automation and machine perception."},
+          {"layer": "The intelligence", "image": "intelligence-thumb.webp", "title": "CSE (Artificial Intelligence and Machine Learning)", "text": "Build systems that learn from data, make decisions and generate content. A good fit if you enjoy mathematics, data and software. Explore careers in applied AI, machine learning and data science."}
         ],
         "links": [
           {"href": "courses/vlsi", "label": "Explore VLSI Design and Technology"},
