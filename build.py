@@ -175,9 +175,29 @@ def banner(root, route, data):
 </section>'''
 
 
+def section_id(record):
+    return record.get("id") or re.sub(r"[^a-z0-9]+", "-", record["title"].lower()).strip("-")
+
+
+def programme_summary(facts):
+    entries = "".join(
+        f'<div><dt>{ESC(fact["label"])}</dt><dd>{ESC(fact["value"])}</dd></div>'
+        for fact in facts
+    )
+    return f'<div class="programme-summary"><dl class="wrap">{entries}</dl></div>'
+
+
+def detail_navigation(anchors):
+    entries = "".join(f'<li>{link("", "#" + target, label)}</li>' for label, target in anchors)
+    return f'''
+<nav class="detail-subnav" aria-label="On this page">
+  <div class="wrap"><p class="detail-subnav-label" aria-hidden="true">On this page</p><ul>{entries}</ul></div>
+</nav>'''
+
+
 def section(root, record):
     title = record["title"]
-    slug = record.get("id") or re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    slug = section_id(record)
     layout = record.get("layout")
     css = "detail-section"
     if layout == "gallery":
@@ -196,21 +216,25 @@ def section(root, record):
             full = thumb.removesuffix("-thumb.webp") + ".webp"
             gallery.append(f'''
 <a class="course-card" href="{url(root, entry['href'])}">
-  <img src="{ESC(thumb)}" srcset="{ESC(thumb)} 768w, {ESC(full)} 1536w" sizes="{COURSE_ART_SIZES}"
-    width="768" height="512" alt="" loading="lazy">
+  <div class="course-plate"><img src="{ESC(thumb)}" srcset="{ESC(thumb)} 768w, {ESC(full)} 1536w" sizes="{COURSE_ART_SIZES}"
+    width="768" height="512" alt="" loading="lazy"></div>
   <div class="course-info"><p class="tag">{ESC(item['layer'])}</p><h3>{ESC(item['title'])}</h3>
-  <p>{ESC(item['text'])}</p><span class="text-link">See the course</span></div>
+  <p>{ESC(item['text'])}</p><span class="text-link">{ESC(entry['label'])}</span></div>
 </a>''')
-        cards = f'<div class="course-grid detail-course-grid">{"".join(gallery)}</div>'
+        cards = f'<div class="course-grid detail-course-grid programme-gallery">{"".join(gallery)}</div>'
     elif items:
         articles = []
+        item_tag = "li" if layout == "projects" else "article"
         for item in items:
             heading = ESC(item["title"])
             period, _, project = item["title"].partition(" · ")
-            if layout == "projects" and project and re.fullmatch(r"(?:Year|Semester) \d+", period):
+            if layout == "projects" and project and re.fullmatch(r"(?:Year|Semester|Step) \d+", period):
                 heading = f'<span class="project-period">{ESC(period)}</span> {ESC(project)}'
-            articles.append(f'<article class="detail-card"><h3>{heading}</h3><p>{ESC(item["text"])}</p></article>')
-        cards = f'<div class="detail-card-grid">{"".join(articles)}</div>'
+            articles.append(f'<{item_tag} class="detail-card"><h3>{heading}</h3><p>{ESC(item["text"])}</p></{item_tag}>')
+        if layout == "projects":
+            cards = f'<ol class="detail-card-grid" role="list">{"".join(articles)}</ol>'
+        else:
+            cards = f'<div class="detail-card-grid">{"".join(articles)}</div>'
     links_html = ""
     if links and layout != "gallery":
         links_html = '<div class="detail-links">' + "".join(link(root, x["href"], x["label"], "text-link") for x in links) + "</div>"
@@ -243,28 +267,44 @@ def faq(records):
 def detail_content(root, route, data):
     cta = data.get("cta") or {"href": "admissions#visit", "label": "Book a campus visit"}
     content = banner(root, route, data)
-    content += "".join(section(root, info) for info in data["sections"])
-    if data.get("faq"):
-        content += faq(data["faq"])
-    closing = {
-        "parents": "Ask about your child’s programme.",
-        "partners": "Discuss a university or industry partnership.",
-    }.get(route, "See the workshop in person.")
-    return content + f'<section class="detail-end"><div class="wrap"><h2>{ESC(closing)}</h2>{link(root, cta["href"], cta["label"], "button primary")}</div></section>'
+    sections = data["sections"]
+    questions = data.get("faq")
+    if data.get("summary"):
+        content += programme_summary(data["summary"])
+    anchors = [(record.get("nav", record["title"]), section_id(record)) for record in sections[:4]]
+    if questions:
+        anchors.append(("Common questions", "questions"))
+    content += detail_navigation(anchors)
+    content += "".join(section(root, info) for info in sections)
+    if questions:
+        content += faq(questions)
+    closing = data.get("closing") or {
+        "title": "See the workshop in person.",
+        "text": "Ask to see the equipment, project work and practical tests that shape the programme.",
+    }
+    return content + f'''
+<section class="detail-end"><div class="wrap">
+  <div class="detail-end-copy"><h2>{ESC(closing["title"])}</h2><p>{ESC(closing["text"])}</p></div>
+  {link(root, cta["href"], cta["label"], "button primary")}
+</div></section>'''
 
 
 def admissions(root):
     return banner(root, "admissions", {
-        "eyebrow": "Admissions", "title": "Join the founding batch.",
-        "lead": "Explore the programmes, visit the campus and talk through eligibility and fees with an adviser before you apply.",
+        "eyebrow": "Admissions", "title": "Plan your application.",
+        "lead": "Choose a programme, check which requirements apply to you and speak to an adviser about fees or a campus visit.",
         "image": "admissions-detail.webp", "cta": {"href": "#apply", "label": "Apply now"},
-    }) + section(root, {
+    }) + detail_navigation([
+        ("How to apply", "how-to-apply"), ("Programme facts", "programme-facts"),
+        ("Application enquiry", "apply"), ("Campus visit", "visit"),
+    ]) + section(root, {
         "title": "How to apply",
+        "layout": "projects",
         "items": [
-            {"title": "Talk to us or visit", "text": "Bring your parents, see what students will build and ask about your chosen programme."},
-            {"title": "Start your application", "text": "Share your interest with the admissions team and get instructions for the formal application."},
-            {"title": "Check eligibility", "text": "Admissions will explain the marks, entrance scores and documents required for your chosen programme."},
-            {"title": "Confirm your seat", "text": "Review the formal offer and fee schedule before accepting a seat."},
+            {"title": "Step 1 · Explore the programme", "text": "Visit with your family and ask what you can build in the course you’re considering."},
+            {"title": "Step 2 · Contact admissions", "text": "Tell the team what you’d like to study and ask for the formal application instructions."},
+            {"title": "Step 3 · Check eligibility", "text": "Check the marks, entrance scores and documents required for your chosen programme."},
+            {"title": "Step 4 · Review your offer", "text": "Review the formal offer and fees before accepting a seat."},
         ],
     }) + '''
 <section class="detail-section" id="programme-facts"><div class="wrap detail-section-inner">
@@ -287,6 +327,8 @@ def admissions(root):
 
 def page(route, title, description, content):
     root = "../" * len(route.split("/")) if route else "./"
+    editorial = f'\n  <link rel="stylesheet" href="{root}editorial.css">' if route in {"", "courses"} else ""
+    main_class = ' class="home-content"' if not route else ""
     output = DIST / route / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(f'''<!doctype html>
@@ -298,12 +340,13 @@ def page(route, title, description, content):
   <title>{ESC(title)}</title>
   <meta name="description" content="{ESC(description)}">
   <link rel="icon" href="{root}assets/favicon.png" type="image/png">
-  <link rel="stylesheet" href="{root}styles.css">
+  <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{root}styles.css">{editorial}
   <script defer src="{root}site.js"></script>
 </head>
 <body>
   {header(root, route)}
-  <main id="main">{content}</main>
+  <main id="main"{main_class}>{content}</main>
   {footer(root)}
 </body>
 </html>

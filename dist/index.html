@@ -7,7 +7,9 @@
   <title>Super Engineering | Build what AI runs on</title>
   <meta name="description" content="Explore B.Tech and management programmes built around practical work, engineering projects and AI.">
   <link rel="icon" href="./assets/favicon.png" type="image/png">
+  <link rel="preload" href="./assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./editorial.css">
   <script defer src="./site.js"></script>
 </head>
 <body>
@@ -24,51 +26,51 @@
     <div class="nav-action"><span class="nav-apply"><a class="button primary" href="./admissions/#apply">Apply now</a></span><button type="button" class="menu-toggle" aria-controls="primary-links" aria-expanded="false">Menu</button></div>
   </nav>
 </header>
-  <main id="main"><section class="hero" aria-labelledby="home-title">
+  <main id="main" class="home-content"><section class="hero" aria-labelledby="home-title">
   <picture class="hero-picture">
     <source media="(max-width: 690px)" srcset="./assets/hero-mobile.webp">
     <img src="./assets/hero.webp" alt="An engineering student measures a connection inside a white humanoid robot" width="1536" height="1024" fetchpriority="high">
   </picture>
   <div class="wrap hero-inner">
     <div class="hero-copy">
-      <p class="eyebrow"><span></span> Engineering and management for the age of super intelligence</p>
+      <p class="eyebrow"><span></span> Engineering and management in the age of AI</p>
       <h1 id="home-title">Build what<br>AI <em>runs on.</em></h1>
-      <p class="hero-lead">AI needs chips to run on, devices to live in and machines to move. Our students learn to build them, one working project every semester, with AI as their tool.</p>
+      <p class="hero-lead">Design the chips, devices, machines and software that make AI work. Build something that works every semester.</p>
       <div class="actions">
         <a class="button primary" href="./admissions/#visit">Book a campus visit</a>
-        <a class="button secondary" href="./courses/">Explore the courses</a>
+        <a class="text-link hero-secondary" href="./courses/">Explore the programmes</a>
       </div>
     </div>
   </div>
   <p class="art-credit">Concept illustration</p>
 </section>
-<div class="ribbon">
-  <div class="wrap ribbon-inner">
-    <div><span class="ribbon-mark mark-chip" aria-hidden="true"></span><p><strong>Four B.Tech pathways</strong><small>Chip, device, machine, intelligence</small></p></div>
-    <div><span class="ribbon-mark mark-stack" aria-hidden="true"></span><p><strong>One build each semester</strong><small>Eight projects over four years</small></p></div>
-    <div><span class="ribbon-mark mark-ring" aria-hidden="true"></span><p><strong>A final semester at work</strong><small>In a company or the Product Studio</small></p></div>
-  </div>
+<div class="home-facts">
+  <dl class="wrap home-facts-grid">
+    <div><dt>B.Tech pathways</dt><dd>4 fields of study</dd></div>
+    <div><dt>Project portfolio</dt><dd>8 working builds</dd></div>
+    <div><dt>Final-semester practice</dt><dd>16–20 weeks</dd></div>
+  </dl>
 </div>
 <section class="section stack-section" id="why-now">
   <div class="wrap">
-    <div class="split editorial">
+    <div class="split editorial chapter-lead">
       <div><p class="eyebrow"><span></span> Why now</p><h2>India is building what <em>AI runs on.</em></h2></div>
-      <div class="editorial-copy"><p>AI can write routine code, solve textbook problems and answer exam questions. It still needs engineers who can design chips, build smart devices, make machines move and develop the intelligence inside them.</p><p>India is investing in the factories and technology to build all four.</p></div>
+      <div class="editorial-copy"><p>AI depends on engineers who can design silicon, make devices work and train reliable models. India is investing in the technology and factories where that work happens.</p></div>
     </div>
-    <div class="stat-grid">
-      <article><strong>₹13.11<span> lakh crore</span></strong><p>Electronics produced in India in FY 2025–26, up from ₹11.32 lakh crore in FY 2024–25</p></article>
-      <article><strong>12</strong><p>Semiconductor projects approved under Semicon India 1.0</p></article>
-      <article><strong>₹1,27,500<span> crore</span></strong><p>Approved for Semicon 2.0</p></article>
-    </div>
+    <dl class="stat-grid industry-stats">
+      <div><dt>Electronics production</dt><dd class="stat-value">₹13.11 <span>lakh crore</span></dd><dd class="stat-context">In FY 2025–26, up from ₹11.32 lakh crore the previous year.</dd></div>
+      <div><dt>Semicon India 1.0</dt><dd class="stat-value">12</dd><dd class="stat-context">Semiconductor projects approved.</dd></div>
+      <div><dt>Semicon 2.0</dt><dd class="stat-value">₹1,27,500 <span>crore</span></dd><dd class="stat-context">Funding approved.</dd></div>
+    </dl>
     <p class="source"><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2333716&amp;reg=48&amp;lang=2">Semiconductor source</a> · <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2291171&amp;lang=2&amp;reg=48">Electronics production source</a></p>
   </div>
 </section>
 <section class="section comparison-section" id="the-difference">
-  <div class="wrap split comparison-grid">
-    <div>
-      <p class="eyebrow"><span></span> The difference</p>
-      <h2>The same four years.<br><em>A different engineer.</em></h2>
-      <p class="section-lead">Your degree records what you studied. Your projects show what you can build.</p>
+  <div class="wrap">
+    <div class="split editorial chapter-lead">
+      <div><p class="eyebrow"><span></span> The difference</p>
+      <h2>The same four years.<br><em>A different engineer.</em></h2></div>
+      <div class="editorial-copy"><p>Start building in your first semester. Leave with working projects you can explain, demonstrate and defend.</p></div>
     </div>
     <div class="table-shell">
       <table class="comparison">
@@ -87,41 +89,50 @@
 </section>
 <section class="section course-section" id="courses">
   <div class="wrap">
-    <div class="split editorial">
-      <div><p class="eyebrow"><span></span> The programmes</p><h2>Four courses.<br><em>One for every layer of AI.</em></h2></div>
-      <div class="editorial-copy"><p>Follow AI from the silicon it runs on to the software that makes it learn. Choose the layer you want to build.</p></div>
+    <div class="split editorial chapter-lead">
+      <div><p class="eyebrow"><span></span> The programmes</p><h2>Choose what<br><em>you’ll build.</em></h2></div>
+      <div class="editorial-copy"><p>Four B.Tech pathways take you from silicon and sensors to moving machines and learning software.</p><a class="text-link" href="./courses/">Compare programmes</a></div>
     </div>
-    <div class="course-grid">
-      <a class="course-card" href="./courses/vlsi/"><img src="./assets/chip-thumb.webp" srcset="./assets/chip-thumb.webp 768w, ./assets/chip.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""><div class="course-info"><p class="tag">The chip</p><h3>VLSI Design &amp; Technology</h3><p>Design the tiny brains inside phones, cars and AI systems.</p><span class="text-link">See the course</span></div></a>
-      <a class="course-card" href="./courses/electronics-computer-engineering/"><img src="./assets/device-thumb.webp" srcset="./assets/device-thumb.webp 768w, ./assets/device.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""><div class="course-info"><p class="tag">The device</p><h3>Electronics &amp; Computer Engineering</h3><p>Build smart devices that can sense, think and act.</p><span class="text-link">See the course</span></div></a>
-      <a class="course-card" href="./courses/robotics-ai/"><img src="./assets/robotics-thumb.webp" srcset="./assets/robotics-thumb.webp 768w, ./assets/robotics.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""><div class="course-info"><p class="tag">The machine</p><h3>Robotics &amp; Artificial Intelligence</h3><p>Build robots and drones that see, move and do real work.</p><span class="text-link">See the course</span></div></a>
-      <a class="course-card" href="./courses/cse-ai-ml/"><img src="./assets/software-workflow-thumb.webp" srcset="./assets/software-workflow-thumb.webp 768w, ./assets/software-workflow.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""><div class="course-info"><p class="tag">The intelligence</p><h3>CSE (AI &amp; Machine Learning)</h3><p>Train models, test their predictions and build software with them.</p><span class="text-link">See the course</span></div></a>
+    <div class="course-grid programme-gallery">
+      <a class="course-card" href="./courses/vlsi/">
+        <div class="course-plate"><img src="./assets/chip-thumb.webp" srcset="./assets/chip-thumb.webp 768w, ./assets/chip.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""></div>
+        <div class="course-info"><p class="tag">The chip</p><h3>VLSI Design &amp; Technology</h3><p>Verify digital circuits and take a chip from specification to physical layout.</p><span class="text-link">Explore VLSI</span></div>
+      </a>
+      <a class="course-card" href="./courses/electronics-computer-engineering/">
+        <div class="course-plate"><img src="./assets/device-thumb.webp" srcset="./assets/device-thumb.webp 768w, ./assets/device.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""></div>
+        <div class="course-info"><p class="tag">The device</p><h3>Electronics &amp; Computer Engineering</h3><p>Design your own circuit board, write its firmware and run AI on the device.</p><span class="text-link">Explore electronics</span></div>
+      </a>
+      <a class="course-card" href="./courses/robotics-ai/">
+        <div class="course-plate"><img src="./assets/robotics-thumb.webp" srcset="./assets/robotics-thumb.webp 768w, ./assets/robotics.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""></div>
+        <div class="course-info"><p class="tag">The machine</p><h3>Robotics &amp; Artificial Intelligence</h3><p>Use sensor data to steer a mobile robot, control an arm or guide a drone.</p><span class="text-link">Explore robotics</span></div>
+      </a>
+      <a class="course-card" href="./courses/cse-ai-ml/">
+        <div class="course-plate"><img src="./assets/software-workflow-thumb.webp" srcset="./assets/software-workflow-thumb.webp 768w, ./assets/software-workflow.webp 1536w" sizes="(max-width: 355px) calc(100vw - 26px), (max-width: 540px) calc(100vw - 36px), (max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px" width="768" height="512" loading="lazy" alt=""></div>
+        <div class="course-info"><p class="tag">The intelligence</p><h3>CSE (AI &amp; Machine Learning)</h3><p>Train models, test their predictions and build software with them.</p><span class="text-link">Explore AI and machine learning</span></div>
+      </a>
     </div>
-    <a class="management-strip" href="./courses/management/"><span><span class="tag">The company</span><strong>BBA &amp; MBA</strong></span><span>Learn how to run the businesses that build and sell these technologies.</span><span class="text-link">See management courses</span></a>
+    <a class="management-strip" href="./courses/management/"><span><span class="tag">Management</span><strong>BBA &amp; MBA</strong></span><span>Take a product from prototype to market through finance, operations and sales.</span><span class="text-link">Explore management</span></a>
   </div>
 </section>
 <section class="section factory-section" id="the-system">
   <div class="wrap split factory-grid">
-    <figure class="factory-art"><img src="./assets/lab.webp" width="1536" height="1024" loading="lazy" alt="A drivetrain prototype on an instrumented test bench"><figcaption>Concept illustration</figcaption></figure>
     <div>
-      <p class="eyebrow"><span></span> How we teach</p>
-      <h2>Build. Test.<br><em>Improve.</em></h2>
-      <ul class="check-list">
-        <li><strong>A working project every semester.</strong> Eight projects, each more demanding than the last.</li>
-        <li><strong>A workshop called the Factory.</strong> Build in a lab set up like a company workshop, with evening access.</li>
-        <li><strong>A personal kit for every student.</strong> Practice on your own equipment.</li>
-        <li><strong>Individual practical tests.</strong> Build in a team and demonstrate the skills yourself.</li>
-        <li><strong>AI as a tool.</strong> Use it to build faster and learn to check its work.</li>
-        <li><strong>16–20 weeks of engineering work.</strong> Spend your final semester in a company or the Product Studio.</li>
-      </ul>
-      <a class="button secondary" href="./how-we-teach/">See how we teach</a>
+      <div class="factory-heading"><p class="eyebrow"><span></span> How we teach</p><h2>Build. Test.<br><em>Improve.</em></h2></div>
+      <dl class="teaching-points">
+        <div><dt>Projects</dt><dd>Build a working project every semester. Each one is more demanding than the last.</dd></div>
+        <div><dt>Equipment</dt><dd>Practice with your own kit and build in the Factory, a workshop designed for evening access.</dd></div>
+        <div><dt>Assessment</dt><dd>Work in a team, check what AI produces and demonstrate your own skills in practical tests.</dd></div>
+        <div><dt>Practice</dt><dd>Spend 16–20 weeks working in a company or in the Product Studio.</dd></div>
+      </dl>
+      <a class="text-link factory-link" href="./how-we-teach/">See how we teach</a>
     </div>
+    <figure class="factory-art"><img src="./assets/lab.webp" width="1536" height="1024" loading="lazy" alt="A drivetrain prototype on an instrumented test bench"><figcaption>Concept illustration</figcaption></figure>
   </div>
 </section>
 <section class="section proof-section" id="outcomes">
   <div class="wrap">
     <div class="split proof-layout">
-      <div class="proof-copy"><p class="eyebrow"><span></span> The outcomes</p><h2>What you’ll hold<br><em>at graduation.</em></h2><p class="section-lead">Super Engineering is a new programme. Our reporting pledge puts student work and verified outcomes where families and employers can see them.</p><a class="text-link" href="./outcomes/#reporting-pledge">Read our reporting pledge</a></div>
+      <div class="proof-copy"><p class="eyebrow"><span></span> The outcomes</p><h2>Graduate with<br><em>work you can show.</em></h2><p class="section-lead">Bring the designs, code and test results. Your portfolio shows an employer what you can build and explain.</p><a class="text-link" href="./outcomes/">Explore graduate outcomes</a></div>
       <figure class="proof-art"><img src="./assets/outcomes.webp" width="1536" height="1024" loading="lazy" alt="A machined impeller mounted in a precision test fixture"><figcaption>Concept illustration</figcaption></figure>
     </div>
     <div class="proof-grid">
@@ -130,11 +141,12 @@
       <article><h3>Real work experience</h3><p>16–20 weeks of full-time engineering work in the final semester.</p></article>
       <article><h3>A four-year B.Tech</h3><p>Ask admissions for the awarding university and approval details for your chosen programme.</p></article>
     </div>
+    <p class="proof-note">Super Engineering is a new programme. <a href="./outcomes/#reporting-pledge">Read how we plan to report outcomes.</a></p>
   </div>
 </section>
 <section class="section parents-section" id="for-parents">
-  <div class="wrap split">
-    <div><p class="eyebrow"><span></span> For parents</p><h2>Ask us the<br><em>hard questions.</em></h2><p class="section-lead">Read about academic support, assessments and what to look for on a campus visit.</p><a class="button secondary" href="./parents/">Read all the answers</a></div>
+  <div class="wrap split parents-layout">
+    <div><p class="eyebrow"><span></span> For parents</p><h2>What to ask<br><em>before you apply.</em></h2><p class="section-lead">Find out how students are supported, assessed and prepared for work.</p><a class="text-link" href="./parents/">Read the parent guide</a></div>
     <div class="faq-list">
       <details open><summary>Will AI take my child’s job?</summary><p>AI is changing every job. We teach students to build the chips, devices, machines and software AI depends on, and to use AI tools with judgment.</p></details>
       <details><summary>Is this a four-year degree?</summary><p>The B.Tech programmes are designed as four-year degrees. Ask admissions for the awarding university, campus and approvals for the specific course.</p></details>
@@ -147,8 +159,8 @@
     <div>
       <p class="eyebrow"><span></span> For founders</p>
       <h2>Build a product.<br><em>Then a company.</em></h2>
-      <p>Start by finding a real problem on a factory floor, on a farm or in a hospital. Build a product for real users. The proposed founder path gives students a way to work on their own venture in the final semester, subject to university approval.</p>
-      <a class="button secondary" href="./founders/">See the founder path</a>
+      <p>Find a problem, build for one user and test a pilot with customers. The proposed founder path lets students work on their own venture in the final semester, subject to university approval.</p>
+      <a class="text-link" href="./founders/">Explore the founder path</a>
     </div>
     <figure><img src="./assets/management.webp" width="1536" height="1024" loading="lazy" alt="Several stages of a motor prototype laid out on a development bench"><figcaption>Concept illustration</figcaption></figure>
   </div>
