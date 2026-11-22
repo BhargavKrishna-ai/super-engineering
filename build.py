@@ -80,7 +80,7 @@ def display_title(text, accent):
 
 def brand(root):
     return f'''<a class="brand" href="{root}" aria-label="Super Engineering home">
-      <img src="{asset_revision(root, 'assets/super-engineering-logo.svg')}" width="1440" height="416" alt="">
+      <img src="{asset_revision(root, 'assets/super-engineering-circuit-logo.webp')}" width="900" height="378" alt="">
     </a>'''
 
 
@@ -409,7 +409,6 @@ def page(route, title, description, content):
   <title>{ESC(title)}</title>
   <meta name="description" content="{ESC(description)}">
   <link rel="icon" href="{asset_revision(root, 'assets/favicon.png')}" type="image/png" sizes="64x64">
-  <link rel="icon" href="{asset_revision(root, 'assets/super-engineering-icon.svg')}" type="image/svg+xml" sizes="any">
   <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{root}assets/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{asset_revision(root, "styles.css")}">{editorial}
