@@ -1,14 +1,31 @@
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("assets/instrument-serif.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.home-content { --editorial-serif: "Instrument Serif", Georgia, serif; }
+
 .home-content .hero h1 {
   font-size: clamp(4.45rem, 7.6vw, 7.6rem);
-  font-weight: 740;
-  line-height: .94;
-  letter-spacing: -.068em;
+}
+
+.home-content .hero h1 em,
+.home-content .proof-copy h2 em,
+.home-content .founder-layout h2 em {
+  font-family: var(--editorial-serif);
+  font-size: 1.18em;
+  font-weight: 400;
+  line-height: .8;
+  letter-spacing: -.019em;
 }
 
 .home-content .hero-lead {
-  max-width: 37ch;
-  font-size: clamp(1.02rem, 1.4vw, 1.21rem);
-  line-height: 1.55;
+  max-width: 39ch;
+  font-size: clamp(1.04rem, 1.42vw, 1.21rem);
+  line-height: 1.6;
 }
 
 .home-content .hero .actions { gap: 10px 24px; }
@@ -60,9 +77,9 @@
 
 .home-content .section h2 {
   font-size: clamp(2.65rem, 5.15vw, 5.2rem);
-  font-weight: 690;
-  line-height: .99;
-  letter-spacing: -.06em;
+  font-weight: 675;
+  line-height: 1.03;
+  letter-spacing: -.041em;
 }
 
 .home-content .section h2 em { color: #315675; }
@@ -331,7 +348,7 @@
     min-height: 0;
     padding: 13px 8px;
   }
-  .home-facts-grid dt { font-size: .63rem; letter-spacing: .015em; }
+  .home-facts-grid dt { font-size: .75rem; letter-spacing: .025em; }
   .home-facts-grid dd { font-size: clamp(.99rem, 2.95vw, 1.3rem); }
 
   .home-content .section h2 { font-size: clamp(2.55rem, 8.9vw, 4rem); }
@@ -357,6 +374,8 @@
 }
 
 @media (max-width: 440px) {
+  .home-content .section h2 { font-size: clamp(2.35rem, 8.7vw, 2.75rem); }
+  .home-content .section h2 br { display: none; }
   .home-facts-grid { grid-template-columns: minmax(0, 1fr); }
   .home-facts-grid > div {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -365,7 +384,6 @@
     padding: 10px 0;
   }
   .home-facts-grid > div + div { border-top: 1px solid var(--line); border-left: 0; }
-  .home-facts-grid dt { font-size: .7rem; }
   .home-facts-grid dd { font-size: 1.11rem; }
 }
 

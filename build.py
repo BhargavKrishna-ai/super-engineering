@@ -185,12 +185,13 @@ def banner(root, route, data):
     artwork = data["image"]
     style = "detail-banner people-led" if data.get("people_led") else "detail-banner"
     caption = data.get("image_caption", "Concept illustration")
+    label_style = "eyebrow programme-name" if route.startswith("courses/") else "eyebrow"
     return f'''
 <section class="{style}" aria-labelledby="page-title">
   <div class="wrap">
     {breadcrumb(root, route)}
     <div class="split detail-grid">
-      <div><p class="eyebrow"><span></span> {ESC(data["eyebrow"])}</p>
+      <div><p class="{label_style}"><span></span> {ESC(data["eyebrow"])}</p>
       <h1 id="page-title">{ESC(data["title"])}</h1>
       <p class="section-lead">{ESC(data["lead"])}</p>
       <div class="actions">{link(root, cta["href"], cta["label"], "button primary")}{link(root, "#the-company-bba-and-mba", "Explore BBA and MBA", "text-link") if route == "courses" else ""}</div></div>
@@ -384,6 +385,7 @@ def asset_revision(root, filename):
 def page(route, title, description, content):
     root = "../" * len(route.split("/")) if route else "./"
     editorial = f'\n  <link rel="stylesheet" href="{asset_revision(root, "editorial.css")}">' if route in {"", "courses"} else ""
+    serif_preload = f'\n  <link rel="preload" href="{root}assets/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>' if not route else ""
     main_class = ' class="home-content"' if not route else ""
     output = DIST / route / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -396,7 +398,7 @@ def page(route, title, description, content):
   <title>{ESC(title)}</title>
   <meta name="description" content="{ESC(description)}">
   <link rel="icon" href="{root}assets/favicon.png" type="image/png">
-  <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>{serif_preload}
   <link rel="stylesheet" href="{asset_revision(root, "styles.css")}">{editorial}
   <script defer src="{asset_revision(root, "site.js")}"></script>
 </head>
