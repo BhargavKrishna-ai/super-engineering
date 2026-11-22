@@ -119,29 +119,8 @@ p { color: var(--body); }
   align-items: center;
   gap: clamp(16px, 2.1vw, 30px);
 }
-.brand { display: inline-flex; align-items: center; gap: 11px; flex: none; text-decoration: none; }
-.brand-text { display: grid; gap: 1px; font: 760 1.13rem/1 var(--display); letter-spacing: -.035em; }
-.brand-text span + span { color: var(--body); font-size: .87em; font-weight: 690; }
-.brand-symbol {
-  position: relative;
-  display: block;
-  width: 36px;
-  height: 36px;
-  flex: none;
-  border: 1px solid #c8dbe9;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #f7fbfe, #eaf3fa);
-}
-.brand-symbol::before, .brand-symbol::after {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 9px;
-  border: 1.5px solid var(--blue-dark);
-  transform: skewY(-27deg);
-}
-.brand-symbol::before { top: 9px; left: 8px; border-bottom: 0; border-right: 0; }
-.brand-symbol::after { right: 8px; bottom: 9px; border-top: 0; border-left: 0; }
+.brand { display: inline-flex; align-items: center; justify-self: start; min-height: 44px; flex: none; text-decoration: none; }
+.nav .brand img { width: clamp(174px, 16vw, 202px); }
 .nav-links {
   display: flex;
   align-items: center;
@@ -525,6 +504,7 @@ a.text-link, .phone-links a { display: inline-flex; align-items: center; min-hei
   padding-bottom: 24px;
   border-bottom: 1px solid var(--line-strong);
 }
+.footer-brand .brand img { width: clamp(172px, 16.5vw, 232px); }
 .footer-brand p { color: var(--ink); font: 650 clamp(1.45rem, 3vw, 2.6rem)/1.04 var(--display); letter-spacing: -.037em; }
 .footer-legal {
   display: flex;
@@ -816,10 +796,7 @@ a.text-link, .phone-links a { display: inline-flex; align-items: center; min-hei
   .nav-apply .button { padding: 8px 11px; }
   .nav-action { gap: 7px; }
   .enhanced .menu-toggle { padding-inline: 9px; }
-  .brand { gap: 7px; }
-  .brand-symbol { width: 31px; height: 31px; }
-  .brand-symbol::before, .brand-symbol::after { width: 13px; height: 8px; }
-  .brand-text { font-size: .93rem; }
+  .nav .brand img { width: clamp(126px, 36vw, 168px); }
   .mobile-actions {
     display: grid;
     position: fixed;
