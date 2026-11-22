@@ -28,6 +28,11 @@ if (menuButton && navLinks) {
       setMenu(false)
     }
   })
+  document.addEventListener('focusin', (event) => {
+    if (!event.target.closest('.nav') && menuButton.getAttribute('aria-expanded') === 'true') {
+      setMenu(false)
+    }
+  })
   window.matchMedia('(min-width: 961px)').addEventListener('change', () => setMenu(false))
 }
 

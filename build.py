@@ -10,9 +10,7 @@ from urllib.parse import urlsplit
 PROJECT = Path(__file__).resolve().parent
 DIST = PROJECT / "dist"
 COURSE_ART_SIZES = (
-    "(max-width: 355px) calc(100vw - 26px), "
-    "(max-width: 540px) calc(100vw - 36px), "
-    "(max-width: 690px) 46vw, (max-width: 1390px) 44vw, 600px"
+    "(max-width: 600px) 90vw, (max-width: 1390px) 44vw, 602px"
 )
 PHONE = "tel:+914045307444"
 WHATSAPP = "https://wa.me/919000719444?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Super%20Engineering."
@@ -74,6 +72,12 @@ def link(root, href, label, css=""):
     return f'<a{style} href="{url(root, href)}">{ESC(label)}</a>'
 
 
+def display_title(text, accent):
+    if not text.endswith(" " + accent):
+        raise ValueError(f"Heading accent {accent!r} must end {text!r}")
+    return f'{ESC(text[:-len(accent)])}<em class="display-accent">{ESC(accent)}</em>'
+
+
 def brand(root):
     return f'''<a class="brand" href="{root}" aria-label="Super Engineering home">
       <span class="brand-symbol" aria-hidden="true"></span>
@@ -116,7 +120,7 @@ def footer(root, route):
     return f'''
 <footer class="site-footer">
   <div class="wrap">
-    <div class="footer-grid"><div class="footer-brand">{brand(root)}<p>Build what AI runs on.</p></div>{columns}</div>
+    <div class="footer-grid"><div class="footer-brand">{brand(root)}<p>Build what AI <em class="display-accent">runs on.</em></p></div>{columns}</div>
     <div class="footer-legal"><p>Super Engineering is the academic delivery partner. Ask admissions which university awards your degree.</p><p>Images are concept illustrations.</p></div>
   </div>
 </footer>
@@ -132,7 +136,15 @@ def form(kind):
     date = '<label class="field"><span>Preferred date <span class="field-optional">(optional)</span></span><input id="visit-date" type="date" name="date"></label>' if visit else ""
     choices = [(name, path.removeprefix("courses/")) for name, path in COURSES if path != "courses/management"]
     choices.extend([("BBA", "bba"), ("MBA", "mba"), ("BBA or MBA (still deciding)", "management")])
-    options = "".join(f'<option data-programme="{ESC(slug)}">{ESC(name)}</option>' for name, slug in choices)
+    short_names = {
+        "electronics-computer-engineering": "Electronics & Comp. Eng.",
+        "robotics-ai": "Robotics & AI",
+        "cse-ai-ml": "CSE (AI & ML)",
+    }
+    options = "".join(
+        f'<option value="{ESC(name)}" data-programme="{ESC(slug)}">{ESC(short_names.get(slug, name))}</option>'
+        for name, slug in choices
+    )
     explanation = "Send your preferred date to admissions in WhatsApp. An adviser will confirm availability."
     if not visit:
         explanation = "Send an enquiry in WhatsApp. An adviser can confirm eligibility and share application instructions."
@@ -140,9 +152,9 @@ def form(kind):
 <form class="visit-form" data-message="{ESC(message)}" hidden>
   <label class="field">Full name<input type="text" name="name" autocomplete="name" required maxlength="90"></label>
   <label class="field">Phone number<input type="tel" name="phone" autocomplete="tel" required maxlength="25"></label>
-  <label class="field">I am a<select name="role" required><option value="">Select one</option><option>Student</option><option>Parent or guardian</option><option>Other</option></select></label>
-  <label class="field">Programme<select name="course" required><option value="">Select programme</option>{options}<option>Still deciding</option></select></label>
+  <label class="field{' form-wide' if not visit else ''}">I am a<select name="role" required><option value="">Select one</option><option>Student</option><option>Parent or guardian</option><option>Other</option></select></label>
   {date}
+  <label class="field form-wide">Programme<select name="course" required><option value="">Select programme</option>{options}<option>Still deciding</option></select></label>
   <p class="form-note form-wide">{explanation} Share your number for admissions follow-up.</p>
   <div class="form-wide"><button type="submit" class="button primary">{title}</button></div>
   <p class="form-message form-wide" role="status"></p>
@@ -157,7 +169,7 @@ def visit_section(root):
     return f'''
 <section class="section contact-section" id="visit">
   <div class="wrap split contact-grid">
-    <div><p class="eyebrow"><span></span> Campus visits</p><h2>Come and <em>see for yourself.</em></h2>
+    <div><p class="eyebrow"><span></span> Campus visits</p><h2>Come and <em class="display-accent">see for yourself.</em></h2>
     <p class="section-lead">Bring your parents. Ask to see the Factory, meet the faculty and get answers about the programme you’re considering.</p>
     {contact_links(root)}</div>
     {form("visit")}
@@ -192,7 +204,7 @@ def banner(root, route, data):
     {breadcrumb(root, route)}
     <div class="split detail-grid">
       <div><p class="{label_style}"><span></span> {ESC(data["eyebrow"])}</p>
-      <h1 id="page-title">{ESC(data["title"])}</h1>
+      <h1 id="page-title">{display_title(data["title"], data["title_accent"])}</h1>
       <p class="section-lead">{ESC(data["lead"])}</p>
       <div class="actions">{link(root, cta["href"], cta["label"], "button primary")}{link(root, "#the-company-bba-and-mba", "Explore BBA and MBA", "text-link") if route == "courses" else ""}</div></div>
       <figure class="detail-image"><img src="{root}assets/{ESC(artwork)}" width="1536" height="1024" alt="{ESC(IMAGE_DESCRIPTIONS[artwork])}" fetchpriority="high"><figcaption>{ESC(caption)}</figcaption></figure>
@@ -232,7 +244,7 @@ def management_overview(root, record):
 <section class="section management-overview" id="{ESC(section_id(record))}">
   <div class="wrap">
     <div class="split management-feature">
-      <div><p class="eyebrow"><span></span> Management</p><h2>{ESC(record["title"])}</h2><p class="section-lead">{ESC(record["intro"])}</p></div>
+      <div><p class="eyebrow"><span></span> Management</p><h2>{display_title(record["title"], record["title_accent"])}</h2><p class="section-lead">{ESC(record["intro"])}</p></div>
       <figure class="management-portrait"><img src="{root}assets/management-overview.webp" width="1536" height="1024" loading="lazy" alt="Editorial portrait of Ratan Tata reviewing a business plan"><figcaption>Ratan Tata · Editorial illustration</figcaption></figure>
     </div>
     <div class="management-degrees">{degrees}</div>
@@ -332,18 +344,19 @@ def detail_content(root, route, data):
         content += faq(questions)
     closing = data.get("closing") or {
         "title": "See the workshop in person.",
+        "title_accent": "in person.",
         "text": "Ask to see the equipment, project work and practical tests that shape the programme.",
     }
     return content + f'''
 <section class="detail-end"><div class="wrap">
-  <div class="detail-end-copy"><h2>{ESC(closing["title"])}</h2><p>{ESC(closing["text"])}</p></div>
+  <div class="detail-end-copy"><h2>{display_title(closing["title"], closing["title_accent"])}</h2><p>{ESC(closing["text"])}</p></div>
   {link(root, cta["href"], cta["label"], "button primary")}
 </div></section>'''
 
 
 def admissions(root):
     return banner(root, "admissions", {
-        "eyebrow": "Admissions", "title": "Plan your application.",
+        "eyebrow": "Admissions", "title": "Plan your application.", "title_accent": "your application.",
         "lead": "Choose a programme, check which requirements apply to you and speak to an adviser about fees or a campus visit.",
         "image": "admissions-detail.webp", "cta": {"href": "#apply", "label": "Start an enquiry"},
     }) + detail_navigation([
@@ -369,7 +382,7 @@ def admissions(root):
   </table></div>
 </div></section>''' + f'''
 <section class="detail-section" id="apply"><div class="wrap split contact-grid">
-  <div><p class="eyebrow"><span></span> Application enquiries</p><h2>Apply for a programme.</h2><p class="section-lead">Tell the team what you’d like to study. You’ll send your enquiry in WhatsApp and can ask for the formal application link.</p>{contact_links(root)}</div>{form("apply")}
+  <div><p class="eyebrow"><span></span> Application enquiries</p><h2>Apply for <em class="display-accent">a programme.</em></h2><p class="section-lead">Tell the team what you’d like to study. You’ll send your enquiry in WhatsApp and can ask for the formal application link.</p>{contact_links(root)}</div>{form("apply")}
 </div></section>
 <section class="detail-section" id="contact"><div class="wrap detail-section-inner">
   <div class="detail-section-intro"><h2>Talk to an adviser.</h2></div>
@@ -385,7 +398,6 @@ def asset_revision(root, filename):
 def page(route, title, description, content):
     root = "../" * len(route.split("/")) if route else "./"
     editorial = f'\n  <link rel="stylesheet" href="{asset_revision(root, "editorial.css")}">' if route in {"", "courses"} else ""
-    serif_preload = f'\n  <link rel="preload" href="{root}assets/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>' if not route else ""
     main_class = ' class="home-content"' if not route else ""
     output = DIST / route / "index.html"
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -398,7 +410,8 @@ def page(route, title, description, content):
   <title>{ESC(title)}</title>
   <meta name="description" content="{ESC(description)}">
   <link rel="icon" href="{root}assets/favicon.png" type="image/png">
-  <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>{serif_preload}
+  <link rel="preload" href="{root}assets/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{root}assets/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{asset_revision(root, "styles.css")}">{editorial}
   <script defer src="{asset_revision(root, "site.js")}"></script>
 </head>

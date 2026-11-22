@@ -2,6 +2,7 @@
   "how-we-teach": {
     "eyebrow": "How we teach",
     "title": "Build, test and prove it.",
+    "title_accent": "prove it.",
     "lead": "Use your own kit to build and test a project each semester. Demonstrate your skills individually, then spend the final semester doing engineering work.",
     "image": "how-teach.webp",
     "sections": [
@@ -49,12 +50,13 @@
         "links": [{"href": "admissions#contact", "label": "Request the full programme document"}]
       }
     ],
-    "closing": {"title": "See a build from the bench up.", "text": "Ask to see a reference project, the student kit and an example of a practical assessment."},
+    "closing": {"title": "See a build from the bench up.", "title_accent": "from the bench up.", "text": "Ask to see a reference project, the student kit and an example of a practical assessment."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   },
   "outcomes": {
     "eyebrow": "Outcomes",
     "title": "Show exactly what you built.",
+    "title_accent": "what you built.",
     "lead": "The programme is designed around eight working projects, an individual skills record and 16–20 weeks of engineering work. Graduate and placement data will follow as cohorts complete the programme.",
     "image": "outcomes-detail.webp",
     "sections": [
@@ -101,12 +103,13 @@
         "links": [{"href": "how-we-teach", "label": "Read how we assess work"}]
       }
     ],
-    "closing": {"title": "Ask to see the work.", "text": "During a visit, ask which reference projects you can see and how students will document what they build."},
+    "closing": {"title": "Ask to see the work.", "title_accent": "the work.", "text": "During a visit, ask which reference projects you can see and how students will document what they build."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   },
   "founders": {
     "eyebrow": "Founders",
     "title": "Take a prototype to its first customer.",
+    "title_accent": "to its first customer.",
     "lead": "Talk to one person about a problem they actually have. Build a version they can try, then test a pilot with customers. Engineering and management students work together along the way.",
     "image": "founders-steve-jobs.webp",
     "people_led": true,
@@ -141,12 +144,13 @@
         ]
       }
     ],
-    "closing": {"title": "Explore the founder path.", "text": "Ask how students can test a pilot and what the university requires for startup work to count towards academic credit."},
+    "closing": {"title": "Explore the founder path.", "title_accent": "the founder path.", "text": "Ask how students can test a pilot and what the university requires for startup work to count towards academic credit."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   },
   "parents": {
     "eyebrow": "For parents",
     "title": "See how your child will learn.",
+    "title_accent": "will learn.",
     "lead": "Find out what your child will build, how we assess their work and which details to confirm before choosing a degree.",
     "image": "parents.webp",
     "sections": [
@@ -183,12 +187,13 @@
       {"question": "Do you guarantee placement?", "answer": "No. Employers make their own hiring decisions. The programme gives students practical experience and evidence of their skills to show employers. Super Engineering has yet to report graduate placement results."},
       {"question": "What does it cost? Is there a hostel?", "answer": "Ask admissions for confirmed fees, scholarship information and the hostel, transport and campus safety arrangements for the location you are considering."}
     ],
-    "closing": {"title": "Talk through your child’s options.", "text": "Ask about the course, the awarding university, fees and what to look for on a campus visit."},
+    "closing": {"title": "Talk through your child’s options.", "title_accent": "your child’s options.", "text": "Ask about the course, the awarding university, fees and what to look for on a campus visit."},
     "cta": {"label": "Talk to an adviser", "href": "admissions#contact"}
   },
   "partners": {
     "eyebrow": "Partners",
     "title": "Build with universities and industry.",
+    "title_accent": "and industry.",
     "lead": "Universities can deliver a project-led programme. Companies can offer briefs and internships, and practising engineers can review student designs.",
     "image": "partners-workshop.webp",
     "people_led": true,
@@ -229,12 +234,13 @@
         "links": [{"href": "how-we-teach", "label": "See the teaching and assessment model"}]
       }
     ],
-    "closing": {"title": "Start with a real engineering brief.", "text": "Speak with the team about adopting the teaching model, setting a project brief, mentoring or hosting supervised work."},
+    "closing": {"title": "Start with a real engineering brief.", "title_accent": "a real engineering brief.", "text": "Speak with the team about adopting the teaching model, setting a project brief, mentoring or hosting supervised work."},
     "cta": {"label": "Talk to our partnerships team", "href": "admissions#contact"}
   },
   "about": {
     "eyebrow": "About Super Engineering",
     "title": "Engineering degrees built around making.",
+    "title_accent": "built around making.",
     "lead": "Chips, devices, machines and factories increasingly sense, decide and act. This is Physical AI. We want more people in India to know how to build it.",
     "image": "about.webp",
     "sections": [
@@ -268,7 +274,7 @@
         ]
       }
     ],
-    "closing": {"title": "See how the idea works in practice.", "text": "Visit to ask how the workshop, projects and assessments fit together across the four years."},
+    "closing": {"title": "See how the idea works in practice.", "title_accent": "works in practice.", "text": "Visit to ask how the workshop, projects and assessments fit together across the four years."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   }
 }

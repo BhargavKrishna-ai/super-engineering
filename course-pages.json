@@ -2,6 +2,7 @@
   "courses": {
     "eyebrow": "The programmes",
     "title": "Choose what you will build.",
+    "title_accent": "you will build.",
     "lead": "Engineer the chips, devices, robots and software behind AI. Or learn to take a product to market through BBA or MBA.",
     "image": "courses-overview.webp",
     "sections": [
@@ -25,6 +26,7 @@
       },
       {
         "title": "BBA and MBA",
+        "title_accent": "and MBA",
         "nav": "BBA & MBA",
         "id": "the-company-bba-and-mba",
         "layout": "management-overview",
@@ -54,6 +56,7 @@
   "courses/electronics-computer-engineering": {
     "eyebrow": "B.Tech · Electronics and Computer Engineering",
     "title": "Build the whole smart device.",
+    "title_accent": "smart device.",
     "lead": "Design a circuit board, write its firmware and run an AI model on the device. Progress from a calibrated instrument to a pilot batch and a field trial.",
     "image": "ece-detail.webp",
     "summary": [
@@ -108,12 +111,13 @@
       {"question": "What does Electronics and Computer Engineering cover?", "answer": "You design the hardware, write the software that runs on it and learn to test them together."},
       {"question": "Does the degree prepare me for software roles?", "answer": "The curriculum includes programming, data structures, operating systems and software engineering. These are foundations for software roles."}
     ],
-    "closing": {"title": "See how a smart device comes together.", "text": "Ask how the projects are assessed, from calibrating your first instrument to testing a device in the field."},
+    "closing": {"title": "See how a smart device comes together.", "title_accent": "comes together.", "text": "Ask how the projects are assessed, from calibrating your first instrument to testing a device in the field."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   },
   "courses/vlsi": {
     "eyebrow": "B.Tech · Electronics Engineering (VLSI Design and Technology)",
     "title": "Design a chip from logic to layout.",
+    "title_accent": "from logic to layout.",
     "lead": "Test digital circuits on programmable hardware, design a processor core and learn to map a chip’s circuits onto silicon.",
     "image": "vlsi-detail.webp",
     "summary": [
@@ -161,12 +165,13 @@
       {"question": "What does VLSI stand for?", "answer": "Very-large-scale integration. It is the design of complex circuits that integrate large numbers of transistors onto a single chip."},
       {"question": "Can I see the final list of projects?", "answer": "Ask admissions for the current curriculum and project brief for the campus you are considering."}
     ],
-    "closing": {"title": "Look inside the chip design course.", "text": "Discuss the proposed FPGA and processor builds, and ask how the course progresses from testing logic to designing a chip layout."},
+    "closing": {"title": "Look inside the chip design course.", "title_accent": "chip design course.", "text": "Discuss the proposed FPGA and processor builds, and ask how the course progresses from testing logic to designing a chip layout."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   },
   "courses/robotics-ai": {
     "eyebrow": "B.Tech · Robotics and Artificial Intelligence",
     "title": "Turn sensor data into controlled motion.",
+    "title_accent": "controlled motion.",
     "lead": "Program a mobile robot to steer, control a robotic arm and use computer vision to guide a machine’s actions.",
     "image": "robotics-detail.webp",
     "summary": [
@@ -215,12 +220,13 @@
       {"question": "How much of the course involves coding?", "answer": "Programming and algorithms are core skills. You also write software for sensors, controllers, motion planning and machine vision."},
       {"question": "Do I need robotics experience to start?", "answer": "The learning model starts with foundational skills and smaller builds. More complex projects follow as you practise programming, electronics and control."}
     ],
-    "closing": {"title": "Explore the robotics project sequence.", "text": "On your visit, ask how the proposed builds progress from a mobile robot to motion control, vision and simulation."},
+    "closing": {"title": "Explore the robotics project sequence.", "title_accent": "robotics project sequence.", "text": "On your visit, ask how the proposed builds progress from a mobile robot to motion control, vision and simulation."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   },
   "courses/cse-ai-ml": {
     "eyebrow": "B.Tech · CSE (Artificial Intelligence and Machine Learning)",
     "title": "Train, test and deploy AI models.",
+    "title_accent": "deploy AI models.",
     "lead": "Prepare data, train models and test them on examples they’ve never seen. Build software for recommendation, computer vision and language.",
     "image": "aiml-detail.webp",
     "summary": [
@@ -268,12 +274,13 @@
       {"question": "If AI writes code, why study computer science?", "answer": "Computer science teaches you to design systems, evaluate the software a tool generates and improve the models that generate it."},
       {"question": "Will I learn to deploy a model?", "answer": "The proposed curriculum includes model deployment and monitoring alongside training and evaluation."}
     ],
-    "closing": {"title": "Follow a model from training to use.", "text": "Ask an adviser how the proposed projects teach you to evaluate predictions and turn a model into working software."},
+    "closing": {"title": "Follow a model from training to use.", "title_accent": "from training to use.", "text": "Ask an adviser how the proposed projects teach you to evaluate predictions and turn a model into working software."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   },
   "courses/management": {
     "eyebrow": "Management · BBA and MBA",
     "title": "Take a product from lab to market.",
+    "title_accent": "from lab to market.",
     "lead": "Work with engineers to find customers, set a price and decide how to source, make and sell a product. Use data and AI to test those decisions against evidence.",
     "image": "management-indra-nooyi.webp",
     "people_led": true,
@@ -322,7 +329,7 @@
       {"question": "Which degree should I explore?", "answer": "The BBA is an undergraduate business degree. The MBA is a postgraduate business degree. Ask admissions which entry routes apply to you."},
       {"question": "Can BBA and MBA students choose the same specialisations?", "answer": "The programme proposes the same four specialisations for both degrees. Confirm availability for your preferred campus with admissions."}
     ],
-    "closing": {"title": "Find the right business programme for you.", "text": "Compare the BBA and MBA routes with an adviser, and ask how each specialisation connects to company projects."},
+    "closing": {"title": "Find the right business programme for you.", "title_accent": "for you.", "text": "Compare the BBA and MBA routes with an adviser, and ask how each specialisation connects to company projects."},
     "cta": {"label": "Book a campus visit", "href": "admissions#visit"}
   }
 }
