@@ -80,7 +80,7 @@ def display_title(text, accent):
 
 def brand(root):
     return f'''<a class="brand" href="{root}" aria-label="Super Engineering home">
-      <img src="{asset_revision(root, 'assets/super-engineering-circuit-logo.webp')}" width="900" height="378" alt="">
+      <img src="{asset_revision(root, 'assets/super-engineering-radial-logo.webp')}" width="900" height="339" alt="">
     </a>'''
 
 
